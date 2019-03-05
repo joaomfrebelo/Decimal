@@ -5,6 +5,12 @@
  *
  * Copyright (c) 2019 João M F Rebelo
  */
+require_once __DIR__
+    . DIRECTORY_SEPARATOR . ".."
+    . DIRECTORY_SEPARATOR . "vendor"
+    . DIRECTORY_SEPARATOR . "autoload.php";
+
+
 spl_autoload_register(function ($class)
 {
     if (\strpos("\\", $class) === 0)
