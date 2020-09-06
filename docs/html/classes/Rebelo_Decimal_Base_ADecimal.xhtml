@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Rebelo\Decimal\Base\ADecimal</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../interfaces.xhtml">Interfaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml#Rebelo_Decimal_Base">Rebelo\Decimal\Base</a>
+          </li>
+          <li class="separator">ADecimal</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/Rebelo/Decimal/Base/ADecimal.php.xhtml#line26">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Rebelo\Decimal\Base\</small>ADecimal</h1>
+        <h4>Object oriented class to use the scalar php datatye float as decimal mantaining the precision</h4>
+        <p>If the number to initialize as Decimal have more decimal places that the precision<br/>the number is will be rounded to the precison in the constructor and with<br/>the RoundMode in the contructor</p>
+        <ul>
+          <li>Author: joao</li>
+        </ul>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class ADecimal
+                extends <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType.xhtml">AType</a>
+            {<br/><ul class="none"><li>// members</li><li>protected static <span title="Rebelo\Decimal\Base\?int">?int</span> <a href="#members">$maxPrecision</a> =
+                        NULL;
+                    </li><li>protected  <a href="#members">$precision</a>;
+                    </li><li>protected  <a href="#members">$roundMode</a>;
+                    </li><li>protected <span title="Rebelo\Decimal\Base\bool|null">bool|null</span> <a href="#members">$isUnsigned</a> =
+                        NULL;
+                    </li></ul><ul class="none"><li>// Inherited members from <span title="Rebelo\Decimal\Base\AType">AType</span></li><li>protected  <a href="#members">$data</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/__construct.xhtml">__construct</a>()
+                    </li><li>protected void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/checkPrecision.xhtml">checkPrecision</a>()
+                    </li><li>public static int <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/getMaxPrecision.xhtml">getMaxPrecision</a>()
+                    </li><li>protected void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/checkSign.xhtml">checkSign</a>()
+                    </li><li>protected <span title="ADecimal">ADecimal</span> <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/afterOperFactory.xhtml">afterOperFactory</a>()
+                    </li><li>public float <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/valueOf.xhtml">valueOf</a>()
+                    </li><li>protected <span title="ADecimal">ADecimal</span> <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aPlus.xhtml">aPlus</a>()
+                    </li><li>protected <span title="ADecimal">ADecimal</span> <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aSubtract.xhtml">aSubtract</a>()
+                    </li><li>protected <span title="ADecimal">ADecimal</span> <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aMultiply.xhtml">aMultiply</a>()
+                    </li><li>protected <span title="ADecimal">ADecimal</span> <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aDivide.xhtml">aDivide</a>()
+                    </li><li>protected <span title="ADecimal">ADecimal</span> <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aModulus.xhtml">aModulus</a>()
+                    </li><li>public void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/plusThis.xhtml">plusThis</a>()
+                    </li><li>public void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/subtractThis.xhtml">subtractThis</a>()
+                    </li><li>public void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/multiplyThis.xhtml">multiplyThis</a>()
+                    </li><li>public void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/divideThis.xhtml">divideThis</a>()
+                    </li><li>public <span title="Decimal">Decimal</span> <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/abs.xhtml">abs</a>()
+                    </li><li>public string <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/toString.xhtml">toString</a>()
+                    </li><li>public void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/round.xhtml">round</a>()
+                    </li><li>public string <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/__toString.xhtml">__toString</a>()
+                    </li><li>public bool <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/equals.xhtml">equals</a>()
+                    </li><li>public bool <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/isEquals.xhtml">isEquals</a>()
+                    </li><li>public int <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/compare.xhtml">compare</a>()
+                    </li><li>public bool <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/isLess.xhtml">isLess</a>()
+                    </li><li>public bool <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/isGreater.xhtml">isGreater</a>()
+                    </li><li>public <span title="RoundMode">RoundMode</span> <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/getRounMode.xhtml">getRounMode</a>()
+                    </li><li>public int <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/getPrecision.xhtml">getPrecision</a>()
+                    </li><li>public bool <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/hasDecimalPart.xhtml">hasDecimalPart</a>()
+                    </li><li>public int <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/flor.xhtml">flor</a>()
+                    </li><li>public int <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/ceil.xhtml">ceil</a>()
+                    </li><li>public void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/setRoundMode.xhtml">setRoundMode</a>()
+                    </li><li>public void <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/setPrecision.xhtml">setPrecision</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Rebelo\Decimal\Base\AType">AType</span></li><li>public final string <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType/serialize.xhtml">serialize</a>()
+                        </li><li>public final void <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType/__invoke.xhtml">__invoke</a>()
+                        </li><li>public string <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType/__toString.xhtml">__toString</a>()
+                        </li><li>public float <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType/numberToFloat.xhtml">numberToFloat</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType.xhtml">Rebelo\Decimal\Base\AType</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="data"><strong>$data</strong>
+                —
+                float<br/><span class="indent">Stores the value</span></li>
+            <li id="isUnsigned"><strong>$isUnsigned</strong>
+                —
+                <a title="Rebelo\Decimal\Base\bool|null" href="../classes/Rebelo_Decimal_Base_bool|null.xhtml">Rebelo\Decimal\Base\bool|null</a><br/><span class="indent">Define if is an usined instance</span></li>
+            <li id="maxPrecision"><strong>$maxPrecision</strong>
+                —
+                <a title="Rebelo\Decimal\Base\?int" href="../classes/Rebelo_Decimal_Base_?int.xhtml">Rebelo\Decimal\Base\?int</a><br/><span class="indent">Max precision</span></li>
+            <li id="precision"><strong>$precision</strong>
+                —
+                int<br/><span class="indent">The number of decimals (scale)</span></li>
+            <li id="roundMode"><strong>$roundMode</strong>
+                —
+                int<br/><span class="indent">The round mode</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="aDivide"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aDivide.xhtml">aDivide()</a>
+                — Return a new Decimal whose the value is this demcial divided by $number if $pecision and/or $roundMode are note suplied is used $this precison or/and $this rooundMode</li>
+            <li id="aModulus"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aModulus.xhtml">aModulus()</a>
+                — Return a new ADecimal whose the value is the reminder of this demcial divided by $number.</li>
+            <li id="aMultiply"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aMultiply.xhtml">aMultiply()</a>
+                — Return a new ADecimal whose the value is this demcial muliplied by $number if $pecision and/or $roundMode are note suplied is used $this precison or/and $this rooundMode</li>
+            <li id="aPlus"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aPlus.xhtml">aPlus()</a>
+                — Return a new ADecimal whose the value is this demcial plus $number if $pecision and/or $roundMode are note suplied is used $this precison or/and $this rooundMode</li>
+            <li id="aSubtract"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/aSubtract.xhtml">aSubtract()</a>
+                — Return a new Decimal whose the value is this demcial minus $number if $pecision and/or $roundMode are note suplied is used $this precison or/and $this rooundMode</li>
+            <li id="afterOperFactory"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/afterOperFactory.xhtml">afterOperFactory()</a>
+                — Create the class to return after aritmetic operation</li>
+            <li id="checkPrecision"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/checkPrecision.xhtml">checkPrecision()</a>
+                — Check if the precision is in the valid tange values</li>
+            <li id="checkSign"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/checkSign.xhtml">checkSign()</a>
+                — Throws DecimalException if is Unsigned and tha value is negative</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/__construct.xhtml">__construct()</a>
+                — The default RoundMode is RoundMode::HALF_UP</li>
+            <li id="__toString">
+              <a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/__toString.xhtml">__toString()</a>
+            </li>
+            <li id="abs"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/abs.xhtml">abs()</a>
+                — Return a new Decimal whose the value is the absolute value of this Decimal</li>
+            <li id="ceil"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/ceil.xhtml">ceil()</a>
+                — A int of this decimal value rounded up to the next highest int</li>
+            <li id="compare"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/compare.xhtml">compare()</a>
+                — Compare the two ADecimals</li>
+            <li id="divideThis"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/divideThis.xhtml">divideThis()</a>
+                — Divide to this decimal the $number</li>
+            <li id="equals"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/equals.xhtml">equals()</a>
+                — Verify if the two Numbers are equals</li>
+            <li id="flor"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/flor.xhtml">flor()</a>
+                — A int of this decimal value rounded to the next lowest int</li>
+            <li id="getMaxPrecision"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/getMaxPrecision.xhtml">getMaxPrecision()</a>
+                — Get the Max Precision, depends of the value that is setted in php.ini file, less 2</li>
+            <li id="getPrecision"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/getPrecision.xhtml">getPrecision()</a>
+                — Get precision</li>
+            <li id="getRounMode"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/getRounMode.xhtml">getRounMode()</a>
+                — Get the RoudMode</li>
+            <li id="hasDecimalPart"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/hasDecimalPart.xhtml">hasDecimalPart()</a>
+                — Rteurn false if the number doesn't have decomal part or is equal to zero</li>
+            <li id="isEquals"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/isEquals.xhtml">isEquals()</a>
+                — Verify if the two Numbers are equals&lt;br&gt; Alias of equals</li>
+            <li id="isGreater"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/isGreater.xhtml">isGreater()</a>
+                — Returns true if this Adecimal is greater</li>
+            <li id="isLess"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/isLess.xhtml">isLess()</a>
+                — Returns true if this Adecimal is less</li>
+            <li id="multiplyThis"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/multiplyThis.xhtml">multiplyThis()</a>
+                — Multiply to this decimal to $number</li>
+            <li id="plusThis"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/plusThis.xhtml">plusThis()</a>
+                — Add to this decimal the $number</li>
+            <li id="round"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/round.xhtml">round()</a>
+                — Roun this decimal</li>
+            <li id="setPrecision"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/setPrecision.xhtml">setPrecision()</a>
+                — Set the precision of the Decimal the Decimal will be Rouded to the new precision</li>
+            <li id="setRoundMode"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/setRoundMode.xhtml">setRoundMode()</a>
+                — Set a new RoundMode to the Decimal calculation Only have efect at next operations</li>
+            <li id="subtractThis"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/subtractThis.xhtml">subtractThis()</a>
+                — Subtract to this decimal the $number</li>
+            <li id="toString"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/toString.xhtml">toString()</a>
+                — Get the Decimal value as string</li>
+            <li id="valueOf"><a title="Rebelo\Decimal\Base\ADecimal" href="../classes/Rebelo_Decimal_Base_ADecimal/valueOf.xhtml">valueOf()</a>
+                — Get the Decimal as a PHP float scalar type</li>
+          </ul>
+          <h3>Inherited from <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType.xhtml">Rebelo\Decimal\Base\AType</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="__invoke"><a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType/__invoke.xhtml">__invoke()</a>
+                — Throws an exception when trying to call the object as a method</li>
+            <li id="__toString">
+              <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType/__toString.xhtml">__toString()</a>
+            </li>
+            <li id="numberToFloat">
+              <a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType/numberToFloat.xhtml">numberToFloat()</a>
+            </li>
+            <li id="serialize"><a title="Rebelo\Decimal\Base\AType" href="../classes/Rebelo_Decimal_Base_AType/serialize.xhtml">serialize()</a>
+                — Get this object as a serialized string</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.12.0 - Copyright (C) 2010 - 2020 by Arne Blankerts and Contributors</span>
+    </footer>
+  </body>
+</html>

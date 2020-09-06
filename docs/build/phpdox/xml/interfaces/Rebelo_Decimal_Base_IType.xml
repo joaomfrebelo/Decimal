@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface xmlns="http://xml.phpdox.net/src" full="Rebelo\Decimal\Base\IType" namespace="Rebelo\Decimal\Base" name="IType" abstract="false" final="false" start="15" end="50">
+  <file path="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base" file="IType.php" realpath="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base/IType.php" size="915" time="2020-09-05T17:44:42+01:00" unixtime="1599324282" sha1="75b25feeb665371a15e680750877e399484cc51b" relative="Rebelo/Decimal/Base/IType.php"/>
+  <docblock>
+    <description/>
+    <author value="João Rebelo"/>
+  </docblock>
+  <method name="valueOf" start="21" end="21" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+      <return description="return the php native variavel type" type="object">
+        <type full="Rebelo\Decimal\Base\Mixed" namespace="Rebelo\Decimal\Base" name="Mixed"/>
+      </return>
+    </docblock>
+  </method>
+  <method name="__toString" start="27" end="27" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="A string representation of the object"/>
+      <return type="string"/>
+    </docblock>
+    <return type="string" nullable="false"/>
+  </method>
+  <method name="toString" start="33" end="33" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Convert the Object to string"/>
+      <return type="string"/>
+    </docblock>
+    <return type="string" nullable="false"/>
+  </method>
+  <method name="serialize" start="41" end="41" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Return a string representing the object"/>
+      <return description="Description" type="string"/>
+    </docblock>
+    <return type="string" nullable="false"/>
+  </method>
+  <method name="unserialize" start="49" end="49" abstract="false" final="false" static="true" visibility="public">
+    <docblock>
+      <description compact="unserialize a obj string previous serialized"/>
+      <param description="the string serialized" type="string" variable="$serialized"/>
+      <return description="Returns this object" type="object">
+        <type full="Rebelo\Decimal\Base\Mixed" namespace="Rebelo\Decimal\Base" name="Mixed"/>
+      </return>
+    </docblock>
+    <parameter name="serialized" byreference="false" type="string"/>
+  </method>
+  <implementors>
+    <class full="Rebelo\Decimal\Base\ADecimal" namespace="Rebelo\Decimal\Base" name="ADecimal"/>
+    <class full="Rebelo\Decimal\Base\AType" namespace="Rebelo\Decimal\Base" name="AType"/>
+    <class full="Rebelo\Decimal\Decimal" namespace="Rebelo\Decimal" name="Decimal"/>
+    <class full="Rebelo\Decimal\UDecimal" namespace="Rebelo\Decimal" name="UDecimal"/>
+  </implementors>
+</interface>
