@@ -1,5 +1,4 @@
 <?php
-
 /**
  * MIT License
  *
@@ -10,7 +9,7 @@ declare(strict_types=1);
 namespace Rebelo\Decimal\Base;
 
 /**
- * 
+ *
  * @author João Rebelo
  */
 interface IType

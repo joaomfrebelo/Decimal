@@ -31,28 +31,27 @@ class Decimal
                                 \Rebelo\Decimal\RoundMode $roundMode = null)
     {
         $this->isUnsigned = false;
-        parent::__construct($number,
-                            $precision,
-                            $roundMode);
+        parent::__construct($number, $precision, $roundMode);
     }
 
     /**
      *
      * {@inheritdoc}
      *
-     * @param ADecimal $number
-     * @param integer $precision the decimal part of the number to be rounded
-     * @param \Rebelo\Decimal\RoundMode $roundMode the round mode
-     *
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
+     * @param int|null $precision the decimal part of the number to be rounded
+     * @param \Rebelo\Decimal\RoundMode $roundMode the round mode     *
      * @return \Rebelo\Decimal\Decimal
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function divide(Base\ADecimal $number, int $precision = null,
+    public function divide($number, ?int $precision = null,
                            RoundMode $roundMode = null): Decimal
     {
-        return $this->aDivide($number,
-                              $precision,
-                              $roundMode);
+        return $this->aDivide(
+            $number,
+            $precision,
+            $roundMode
+        );
     }
 
     /**
@@ -61,19 +60,21 @@ class Decimal
      * If $pecision and/or $roundMode are note suplied is used $this precison or/and
      * $this rooundMode
      *
-     * @param ADecimal $number
-     * @param integer $precision the decimal part of the number to be rounded
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
+     * @param int|null $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode $roundMode the round mode
      *
      * @return \Rebelo\Decimal\Decimal
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function modulus(Base\ADecimal $number, int $precision = null,
+    public function modulus($number, ?int $precision = null,
                             RoundMode $roundMode = null): Decimal
     {
-        return $this->aModulus($number,
-                               $precision,
-                               $roundMode);
+        return $this->aModulus(
+            $number,
+            $precision,
+            $roundMode
+        );
     }
 
     /**
@@ -81,18 +82,20 @@ class Decimal
      * if $pecision and/or $roundMode are note suplied is used $this precison or/and
      * $this rooundMode
      *
-     * @param \Rebelo\Decimal\Base\Decimal $number
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @param integer $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode $roundMode the round mode
      * @return \Rebelo\Decimal\Decimal
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function multiply(Base\ADecimal $number, int $precision = null,
+    public function multiply($number, int $precision = null,
                              RoundMode $roundMode = null): Decimal
     {
-        return $this->aMultiply($number,
-                                $precision,
-                                $roundMode);
+        return $this->aMultiply(
+            $number,
+            $precision,
+            $roundMode
+        );
     }
 
     /**
@@ -100,19 +103,21 @@ class Decimal
      * if $pecision and/or $roundMode are note suplied is used $this precison or/and
      * $this rooundMode
      *
-     * @param ADecimal $number
-     * @param int $precision the decimal part of the number to be rounded
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
+     * @param int|null $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode $roundMode the round mode
      *
      * @return \Rebelo\Decimal\Decimal
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function plus(Base\ADecimal $number, int $precision = null,
+    public function plus($number, ?int $precision = null,
                          \Rebelo\Decimal\RoundMode $roundMode = null): Decimal
     {
-        return $this->aPlus($number,
-                            $precision,
-                            $roundMode);
+        return $this->aPlus(
+            $number,
+            $precision,
+            $roundMode
+        );
     }
 
     /**
@@ -121,18 +126,20 @@ class Decimal
      * if $pecision and/or $roundMode are note suplied is used $this precison or/and
      * $this rooundMode
      *
-     * @param ADecimal $number
-     * @param integer $precision the decimal part of the number to be rounded
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
+     * @param int|null $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode $roundMode the round mode
      * @return \Rebelo\Decimal\Decimal
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function subtract(Base\ADecimal $number, int $precision = null,
+    public function subtract($number, ?int $precision = null,
                              RoundMode $roundMode = null): Decimal
     {
-        return $this->aSubtract($number,
-                                $precision,
-                                $roundMode);
+        return $this->aSubtract(
+            $number,
+            $precision,
+            $roundMode
+        );
     }
 
     /**
@@ -144,10 +151,12 @@ class Decimal
      */
     public static function unserialize(string $serialized): Decimal
     {
-        return \unserialize($serialized,
-                            [
-                "allowed_classes" => \Rebelo\Decimal\Decimal::class
-        ]);
+        return \unserialize(
+            $serialized,
+            [
+                "allowed_classes" => [\Rebelo\Decimal\Decimal::class]
+            ]
+        );
     }
 
 }

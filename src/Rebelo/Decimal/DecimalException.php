@@ -1,5 +1,4 @@
 <?php
-
 /**
  * MIT License
  *
@@ -16,12 +15,20 @@ class DecimalException
     extends \Exception
 {
 
+    /**
+     * Decimal Exception
+     * @param string $message
+     * @param int $code
+     * @param \Throwable $previous
+     */
     public function __construct($message = "", $code = 0,
                                 \Throwable $previous = NULL)
     {
-        parent::__construct($message,
-                            $code,
-                            $previous);
+        parent::__construct(
+            $message,
+            $code,
+            $previous
+        );
     }
 
 }

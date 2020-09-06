@@ -1,5 +1,4 @@
 <?php
-
 /**
  * MIT License
  *
@@ -15,10 +14,8 @@ namespace Rebelo\Decimal\Base;
  * @author joao
  * @abstract
  */
-abstract class AType
-    implements IType
+abstract class AType implements IType
 {
-
     /**
      *
      * Stores the value
@@ -56,7 +53,26 @@ abstract class AType
      */
     public function __toString(): string
     {
-        return \get_class($this) . $this->toString() . "\n";
+        return \get_class($this).$this->toString()."\n";
     }
 
+    /**
+     *
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
+     * @return float
+     * @throws \InvalidArgumentException On invalid argument
+     */
+    public function numberToFloat($number): float
+    {
+        switch (true) {
+            case $number instanceof \Rebelo\Decimal\Base\ADecimal:
+                return $number->valueOf();
+            case is_float($number):
+            case is_double($number):
+            case is_int($number):
+                return (float) $number;
+            default :
+                throw new \InvalidArgumentException("Invalid argument type in ".__METHOD__);
+        }
+    }
 }

@@ -1,8 +1,7 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.3/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
          backupGlobals="true"
          backupStaticAttributes="false"
-         cacheTokens="false"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -18,9 +17,19 @@
          timeoutForMediumTests="10"
          timeoutForLargeTests="60"
          verbose="true"
-	 bootstrap="bootstrap.php">
-	<php>
-		<ini name="display_errors" value="On" />
-		<ini name="display_startup_errors" value="On" />
-	</php>
+         bootstrap="bootstrap.php"
+	 failOnWarning="true">
+    <php>
+        <ini name="display_errors" value="On" />
+        <ini name="display_startup_errors" value="On" />
+	<ini name="memory_limit" value="-1" />
+    </php>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../src</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-clover" target="../docs/build/coverage/index.xml"/>
+    </logging>
 </phpunit>

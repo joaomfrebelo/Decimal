@@ -14,10 +14,10 @@ class RoundModeTest
     extends \PHPUnit\Framework\TestCase
 {
 
-    protected $_objectValue;
-    protected $_objectName;
+    protected \Rebelo\Decimal\RoundMode $_objectValue;
+    protected \Rebelo\Decimal\RoundMode $_objectName;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->_objectValue = new RoundMode(RoundMode::HALF_EVEN);
         $this->_objectName  = new RoundMode("HALF_EVEN");
@@ -26,7 +26,7 @@ class RoundModeTest
     /**
      * @covers \Rebelo\Decimal\RoundMode::get()
      */
-    public function testIsValidValueInObjValue()
+    public function testIsValidValueInObjValue(): void
     {
         $this->assertEquals(RoundMode::HALF_EVEN, $this->_objectValue->get());
     }
@@ -34,12 +34,12 @@ class RoundModeTest
     /**
      * @covers \Rebelo\Decimal\RoundMode::get()
      */
-    public function testIsValidValueInObjName()
+    public function testIsValidValueInObjName(): void
     {
         $this->assertEquals(RoundMode::HALF_EVEN, $this->_objectValue->get());
     }
 
-    public function testException()
+    public function testException(): void
     {
         $this->expectException(\Rebelo\Enum\EnumException::class);
         new RoundMode("NOT_EXIST");
