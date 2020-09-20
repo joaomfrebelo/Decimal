@@ -109,7 +109,7 @@ class UDecimal
     }
 
     /**
-     * Return a new UDecimal whose the value is this demcial minus $number
+     * Return a new UDecimal (unsigned decimal) whose the value is this demcial minus $number
      * if $pecision and/or $roundMode are note suplied is used $this precison or/and
      * $this rooundMode
      *
@@ -126,6 +126,26 @@ class UDecimal
             $precision,
             $roundMode
         );
+    }
+
+    /**
+     * Return a new Decimal (signed decimal) whose the value is this demcial minus $number
+     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
+     * $this rooundMode
+     *
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
+     * @param int|null $precision
+     * @param \Rebelo\Decimal\RoundMode $roundMode
+     * @return \Rebelo\Decimal\Decimal
+     */
+    public function signedSubtract($number, ?int $precision = null,
+                                   RoundMode $roundMode = null): Decimal
+    {
+        $dec = new Decimal(
+            $this->valueOf(), $this->precision, new RoundMode($this->roundMode)
+        );
+
+        return $dec->subtract($number, $precision, $roundMode);
     }
 
     /**

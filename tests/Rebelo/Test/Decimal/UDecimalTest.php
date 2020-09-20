@@ -481,6 +481,19 @@ class UDecimalTest
 
     /**
      *
+     * @return void
+     */
+    public function testSignedSubtract(): void
+    {
+        $dec = new \Rebelo\Decimal\UDecimal(9.99, 2);
+        $dec->signedSubtract(10.00);
+        $sub = $dec->signedSubtract(10.00);
+        $this->assertInstanceOf(Decimal::class, $sub);
+        $this->assertEquals(-0.01, $sub->valueOf());
+    }
+
+    /**
+     *
      * @return array
      */
     public function providerTestMultiply(): array

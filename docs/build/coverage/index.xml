@@ -1,137 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1599933336">
-  <project timestamp="1599933336">
+<coverage generated="1600632142">
+  <project timestamp="1600632142">
     <file name="D:\NetBeansProjects\PHP\Decimal\src\Rebelo\Decimal\Base\ADecimal.php">
       <class name="Rebelo\Decimal\Base\ADecimal" namespace="global">
-        <metrics complexity="54" methods="31" coveredmethods="20" conditionals="0" coveredconditionals="0" statements="104" coveredstatements="79" elements="135" coveredelements="99"/>
+        <metrics complexity="54" methods="31" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="104" coveredstatements="35" elements="135" coveredelements="39"/>
       </class>
-      <line num="69" type="method" name="__construct" visibility="public" complexity="9" crap="13.05" count="88"/>
-      <line num="72" type="stmt" count="88"/>
+      <line num="69" type="method" name="__construct" visibility="public" complexity="9" crap="13.05" count="1"/>
+      <line num="72" type="stmt" count="1"/>
       <line num="74" type="stmt" count="0"/>
-      <line num="79" type="stmt" count="88"/>
-      <line num="80" type="stmt" count="80"/>
+      <line num="79" type="stmt" count="1"/>
+      <line num="80" type="stmt" count="1"/>
       <line num="81" type="stmt" count="0"/>
       <line num="82" type="stmt" count="0"/>
-      <line num="83" type="stmt" count="88"/>
-      <line num="84" type="stmt" count="88"/>
+      <line num="83" type="stmt" count="1"/>
+      <line num="84" type="stmt" count="1"/>
       <line num="85" type="stmt" count="0"/>
       <line num="86" type="stmt" count="0"/>
       <line num="87" type="stmt" count="0"/>
       <line num="89" type="stmt" count="0"/>
-      <line num="92" type="stmt" count="88"/>
-      <line num="94" type="stmt" count="86"/>
-      <line num="96" type="stmt" count="86"/>
-      <line num="97" type="stmt" count="85"/>
-      <line num="98" type="stmt" count="79"/>
-      <line num="100" type="stmt" count="86"/>
-      <line num="101" type="stmt" count="85"/>
-      <line num="109" type="method" name="checkPrecision" visibility="protected" complexity="3" crap="3" count="88"/>
-      <line num="111" type="stmt" count="88"/>
-      <line num="113" type="stmt" count="2"/>
-      <line num="115" type="stmt" count="86"/>
-      <line num="124" type="method" name="getMaxPrecision" visibility="public" complexity="2" crap="2" count="88"/>
-      <line num="126" type="stmt" count="88"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="1"/>
+      <line num="96" type="stmt" count="1"/>
+      <line num="97" type="stmt" count="1"/>
+      <line num="98" type="stmt" count="1"/>
+      <line num="100" type="stmt" count="1"/>
+      <line num="101" type="stmt" count="1"/>
+      <line num="109" type="method" name="checkPrecision" visibility="protected" complexity="3" crap="3.33" count="1"/>
+      <line num="111" type="stmt" count="1"/>
+      <line num="113" type="stmt" count="0"/>
+      <line num="115" type="stmt" count="1"/>
+      <line num="124" type="method" name="getMaxPrecision" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="126" type="stmt" count="1"/>
       <line num="127" type="stmt" count="1"/>
-      <line num="129" type="stmt" count="88"/>
-      <line num="137" type="method" name="checkSign" visibility="protected" complexity="3" crap="3" count="86"/>
-      <line num="139" type="stmt" count="86"/>
-      <line num="141" type="stmt" count="1"/>
-      <line num="142" type="stmt" count="1"/>
-      <line num="143" type="stmt" count="1"/>
-      <line num="146" type="stmt" count="85"/>
-      <line num="157" type="method" name="afterOperFactory" visibility="protected" complexity="3" crap="3" count="45"/>
-      <line num="160" type="stmt" count="45"/>
-      <line num="161" type="stmt" count="45"/>
-      <line num="162" type="stmt" count="45"/>
-      <line num="163" type="stmt" count="45"/>
-      <line num="164" type="stmt" count="45"/>
-      <line num="165" type="stmt" count="37"/>
-      <line num="166" type="stmt" count="45"/>
-      <line num="176" type="method" name="valueOf" visibility="public" complexity="1" crap="1" count="82"/>
-      <line num="178" type="stmt" count="82"/>
-      <line num="193" type="method" name="aPlus" visibility="protected" complexity="1" crap="1" count="34"/>
-      <line num="196" type="stmt" count="34"/>
-      <line num="197" type="stmt" count="34"/>
-      <line num="211" type="method" name="aSubtract" visibility="protected" complexity="1" crap="1" count="5"/>
-      <line num="214" type="stmt" count="5"/>
-      <line num="215" type="stmt" count="5"/>
-      <line num="229" type="method" name="aMultiply" visibility="protected" complexity="1" crap="1" count="5"/>
-      <line num="232" type="stmt" count="5"/>
-      <line num="233" type="stmt" count="5"/>
-      <line num="247" type="method" name="aDivide" visibility="protected" complexity="2" crap="2" count="5"/>
-      <line num="250" type="stmt" count="5"/>
-      <line num="251" type="stmt" count="5"/>
-      <line num="252" type="stmt" count="1"/>
-      <line num="254" type="stmt" count="4"/>
-      <line num="255" type="stmt" count="4"/>
-      <line num="270" type="method" name="aModulus" visibility="protected" complexity="2" crap="2.03" count="1"/>
-      <line num="273" type="stmt" count="1"/>
-      <line num="274" type="stmt" count="1"/>
+      <line num="129" type="stmt" count="1"/>
+      <line num="137" type="method" name="checkSign" visibility="protected" complexity="3" crap="4.94" count="1"/>
+      <line num="139" type="stmt" count="1"/>
+      <line num="141" type="stmt" count="0"/>
+      <line num="142" type="stmt" count="0"/>
+      <line num="143" type="stmt" count="0"/>
+      <line num="146" type="stmt" count="1"/>
+      <line num="157" type="method" name="afterOperFactory" visibility="protected" complexity="3" crap="3" count="1"/>
+      <line num="160" type="stmt" count="1"/>
+      <line num="161" type="stmt" count="1"/>
+      <line num="162" type="stmt" count="1"/>
+      <line num="163" type="stmt" count="1"/>
+      <line num="164" type="stmt" count="1"/>
+      <line num="165" type="stmt" count="1"/>
+      <line num="166" type="stmt" count="1"/>
+      <line num="176" type="method" name="valueOf" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="178" type="stmt" count="1"/>
+      <line num="193" type="method" name="aPlus" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="196" type="stmt" count="0"/>
+      <line num="197" type="stmt" count="0"/>
+      <line num="211" type="method" name="aSubtract" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="214" type="stmt" count="1"/>
+      <line num="215" type="stmt" count="1"/>
+      <line num="229" type="method" name="aMultiply" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="232" type="stmt" count="0"/>
+      <line num="233" type="stmt" count="0"/>
+      <line num="247" type="method" name="aDivide" visibility="protected" complexity="2" crap="6" count="0"/>
+      <line num="250" type="stmt" count="0"/>
+      <line num="251" type="stmt" count="0"/>
+      <line num="252" type="stmt" count="0"/>
+      <line num="254" type="stmt" count="0"/>
+      <line num="255" type="stmt" count="0"/>
+      <line num="270" type="method" name="aModulus" visibility="protected" complexity="2" crap="6" count="0"/>
+      <line num="273" type="stmt" count="0"/>
+      <line num="274" type="stmt" count="0"/>
       <line num="275" type="stmt" count="0"/>
-      <line num="277" type="stmt" count="1"/>
-      <line num="278" type="stmt" count="1"/>
-      <line num="288" type="method" name="plusThis" visibility="public" complexity="1" crap="1" count="32"/>
-      <line num="290" type="stmt" count="32"/>
-      <line num="291" type="stmt" count="32"/>
-      <line num="292" type="stmt" count="32"/>
-      <line num="301" type="method" name="subtractThis" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="303" type="stmt" count="3"/>
-      <line num="304" type="stmt" count="3"/>
-      <line num="305" type="stmt" count="3"/>
-      <line num="314" type="method" name="multiplyThis" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="316" type="stmt" count="2"/>
-      <line num="317" type="stmt" count="2"/>
-      <line num="318" type="stmt" count="2"/>
-      <line num="327" type="method" name="divideThis" visibility="public" complexity="2" crap="2" count="3"/>
-      <line num="329" type="stmt" count="3"/>
-      <line num="330" type="stmt" count="3"/>
-      <line num="331" type="stmt" count="1"/>
-      <line num="333" type="stmt" count="2"/>
-      <line num="334" type="stmt" count="2"/>
-      <line num="335" type="stmt" count="2"/>
+      <line num="277" type="stmt" count="0"/>
+      <line num="278" type="stmt" count="0"/>
+      <line num="288" type="method" name="plusThis" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="290" type="stmt" count="0"/>
+      <line num="291" type="stmt" count="0"/>
+      <line num="292" type="stmt" count="0"/>
+      <line num="301" type="method" name="subtractThis" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="303" type="stmt" count="0"/>
+      <line num="304" type="stmt" count="0"/>
+      <line num="305" type="stmt" count="0"/>
+      <line num="314" type="method" name="multiplyThis" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="316" type="stmt" count="0"/>
+      <line num="317" type="stmt" count="0"/>
+      <line num="318" type="stmt" count="0"/>
+      <line num="327" type="method" name="divideThis" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="329" type="stmt" count="0"/>
+      <line num="330" type="stmt" count="0"/>
+      <line num="331" type="stmt" count="0"/>
+      <line num="333" type="stmt" count="0"/>
+      <line num="334" type="stmt" count="0"/>
+      <line num="335" type="stmt" count="0"/>
       <line num="343" type="method" name="abs" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="345" type="stmt" count="0"/>
       <line num="346" type="stmt" count="0"/>
       <line num="356" type="method" name="toString" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="358" type="stmt" count="0"/>
-      <line num="364" type="method" name="round" visibility="public" complexity="5" crap="5.09" count="86"/>
-      <line num="366" type="stmt" count="86"/>
-      <line num="367" type="stmt" count="85"/>
-      <line num="369" type="stmt" count="8"/>
-      <line num="372" type="stmt" count="85"/>
-      <line num="374" type="stmt" count="6"/>
-      <line num="375" type="stmt" count="6"/>
+      <line num="364" type="method" name="round" visibility="public" complexity="5" crap="8.90" count="1"/>
+      <line num="366" type="stmt" count="1"/>
+      <line num="367" type="stmt" count="1"/>
+      <line num="369" type="stmt" count="0"/>
+      <line num="372" type="stmt" count="1"/>
+      <line num="374" type="stmt" count="0"/>
+      <line num="375" type="stmt" count="0"/>
       <line num="377" type="stmt" count="0"/>
       <line num="378" type="stmt" count="0"/>
-      <line num="381" type="stmt" count="6"/>
-      <line num="382" type="stmt" count="6"/>
-      <line num="385" type="stmt" count="85"/>
-      <line num="386" type="stmt" count="85"/>
-      <line num="389" type="stmt" count="85"/>
+      <line num="381" type="stmt" count="0"/>
+      <line num="382" type="stmt" count="0"/>
+      <line num="385" type="stmt" count="1"/>
+      <line num="386" type="stmt" count="1"/>
+      <line num="389" type="stmt" count="1"/>
       <line num="396" type="method" name="__toString" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="398" type="stmt" count="0"/>
       <line num="400" type="stmt" count="0"/>
       <line num="402" type="stmt" count="0"/>
-      <line num="411" type="method" name="equals" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="413" type="stmt" count="1"/>
-      <line num="422" type="method" name="isEquals" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="424" type="stmt" count="1"/>
-      <line num="438" type="method" name="compare" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="440" type="stmt" count="1"/>
-      <line num="450" type="method" name="isLess" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="452" type="stmt" count="1"/>
-      <line num="462" type="method" name="isGreater" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="464" type="stmt" count="1"/>
+      <line num="411" type="method" name="equals" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="413" type="stmt" count="0"/>
+      <line num="422" type="method" name="isEquals" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="424" type="stmt" count="0"/>
+      <line num="438" type="method" name="compare" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="440" type="stmt" count="0"/>
+      <line num="450" type="method" name="isLess" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="452" type="stmt" count="0"/>
+      <line num="462" type="method" name="isGreater" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="464" type="stmt" count="0"/>
       <line num="472" type="method" name="getRounMode" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="474" type="stmt" count="0"/>
       <line num="483" type="method" name="getPrecision" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="485" type="stmt" count="0"/>
       <line num="494" type="method" name="hasDecimalPart" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="496" type="stmt" count="0"/>
-      <line num="505" type="method" name="flor" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="507" type="stmt" count="1"/>
-      <line num="516" type="method" name="ceil" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="518" type="stmt" count="1"/>
+      <line num="505" type="method" name="flor" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="507" type="stmt" count="0"/>
+      <line num="516" type="method" name="ceil" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="518" type="stmt" count="0"/>
       <line num="528" type="method" name="setRoundMode" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="530" type="stmt" count="0"/>
       <line num="531" type="stmt" count="0"/>
@@ -141,11 +141,11 @@
       <line num="544" type="stmt" count="0"/>
       <line num="545" type="stmt" count="0"/>
       <line num="549" type="stmt" count="0"/>
-      <metrics loc="548" ncloc="284" classes="1" methods="31" coveredmethods="20" conditionals="0" coveredconditionals="0" statements="104" coveredstatements="79" elements="135" coveredelements="99"/>
+      <metrics loc="548" ncloc="284" classes="1" methods="31" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="104" coveredstatements="35" elements="135" coveredelements="39"/>
     </file>
     <file name="D:\NetBeansProjects\PHP\Decimal\src\Rebelo\Decimal\Base\AType.php">
       <class name="Rebelo\Decimal\Base\AType" namespace="global">
-        <metrics complexity="9" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="6" elements="14" coveredelements="6"/>
+        <metrics complexity="9" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="3" elements="14" coveredelements="3"/>
       </class>
       <line num="34" type="method" name="serialize" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="36" type="stmt" count="0"/>
@@ -153,16 +153,16 @@
       <line num="47" type="stmt" count="0"/>
       <line num="54" type="method" name="__toString" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="56" type="stmt" count="0"/>
-      <line num="65" type="method" name="numberToFloat" visibility="public" complexity="6" crap="6.10" count="82"/>
-      <line num="68" type="stmt" count="82"/>
-      <line num="69" type="stmt" count="82"/>
+      <line num="65" type="method" name="numberToFloat" visibility="public" complexity="6" crap="12.72" count="1"/>
+      <line num="68" type="stmt" count="1"/>
+      <line num="69" type="stmt" count="0"/>
       <line num="70" type="stmt" count="1"/>
-      <line num="71" type="stmt" count="1"/>
-      <line num="72" type="stmt" count="1"/>
+      <line num="71" type="stmt" count="0"/>
+      <line num="72" type="stmt" count="0"/>
       <line num="73" type="stmt" count="1"/>
       <line num="75" type="stmt" count="0"/>
       <line num="78" type="stmt" count="0"/>
-      <metrics loc="77" ncloc="37" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="6" elements="14" coveredelements="6"/>
+      <metrics loc="77" ncloc="37" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="3" elements="14" coveredelements="3"/>
     </file>
     <file name="D:\NetBeansProjects\PHP\Decimal\src\Rebelo\Decimal\Base\IDecimal.php">
       <line num="35" type="stmt" count="0"/>
@@ -178,12 +178,12 @@
     </file>
     <file name="D:\NetBeansProjects\PHP\Decimal\src\Rebelo\Decimal\Decimal.php">
       <class name="Rebelo\Decimal\Decimal" namespace="global">
-        <metrics complexity="7" methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="3" elements="23" coveredelements="4"/>
+        <metrics complexity="7" methods="7" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="5" elements="23" coveredelements="7"/>
       </class>
-      <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="65"/>
-      <line num="33" type="stmt" count="65"/>
-      <line num="34" type="stmt" count="65"/>
-      <line num="35" type="stmt" count="65"/>
+      <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="1"/>
       <line num="47" type="method" name="divide" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="50" type="stmt" count="0"/>
       <line num="51" type="stmt" count="0"/>
@@ -196,71 +196,76 @@
       <line num="113" type="method" name="plus" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="116" type="stmt" count="0"/>
       <line num="117" type="stmt" count="0"/>
-      <line num="135" type="method" name="subtract" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="138" type="stmt" count="0"/>
-      <line num="139" type="stmt" count="0"/>
+      <line num="135" type="method" name="subtract" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="138" type="stmt" count="1"/>
+      <line num="139" type="stmt" count="1"/>
       <line num="152" type="method" name="unserialize" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="154" type="stmt" count="0"/>
       <line num="155" type="stmt" count="0"/>
       <line num="157" type="stmt" count="0"/>
       <line num="163" type="stmt" count="0"/>
-      <metrics loc="162" ncloc="81" classes="1" methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="3" elements="23" coveredelements="4"/>
+      <metrics loc="162" ncloc="81" classes="1" methods="7" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="5" elements="23" coveredelements="7"/>
     </file>
     <file name="D:\NetBeansProjects\PHP\Decimal\src\Rebelo\Decimal\DecimalException.php">
       <class name="Rebelo\Decimal\DecimalException" namespace="global">
-        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="4" coveredelements="4"/>
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
       </class>
-      <line num="24" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
-      <line num="27" type="stmt" count="5"/>
-      <line num="28" type="stmt" count="5"/>
-      <line num="32" type="stmt" count="5"/>
+      <line num="24" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
       <line num="35" type="stmt" count="0"/>
-      <metrics loc="34" ncloc="20" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="4" coveredelements="4"/>
+      <metrics loc="34" ncloc="20" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
     </file>
     <file name="D:\NetBeansProjects\PHP\Decimal\src\Rebelo\Decimal\RoundMode.php">
       <class name="Rebelo\Decimal\RoundMode" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
       </class>
-      <line num="55" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="38"/>
-      <line num="57" type="stmt" count="38"/>
-      <line num="58" type="stmt" count="38"/>
-      <line num="64" type="method" name="get" visibility="public" complexity="1" crap="1" count="79"/>
-      <line num="66" type="stmt" count="79"/>
+      <line num="55" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="57" type="stmt" count="1"/>
+      <line num="58" type="stmt" count="1"/>
+      <line num="64" type="method" name="get" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="66" type="stmt" count="1"/>
       <metrics loc="68" ncloc="30" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
     </file>
     <file name="D:\NetBeansProjects\PHP\Decimal\src\Rebelo\Decimal\UDecimal.php">
       <class name="Rebelo\Decimal\UDecimal" namespace="global">
-        <metrics complexity="8" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="14" elements="26" coveredelements="20"/>
+        <metrics complexity="9" methods="9" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="8" elements="31" coveredelements="10"/>
       </class>
-      <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="88"/>
-      <line num="33" type="stmt" count="88"/>
-      <line num="34" type="stmt" count="88"/>
-      <line num="35" type="stmt" count="88"/>
-      <line num="39" type="stmt" count="85"/>
+      <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
       <line num="45" type="method" name="abs" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="47" type="stmt" count="0"/>
-      <line num="61" type="method" name="modulus" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="64" type="stmt" count="1"/>
-      <line num="65" type="stmt" count="1"/>
-      <line num="81" type="method" name="multiply" visibility="public" complexity="1" crap="1" count="5"/>
-      <line num="84" type="stmt" count="5"/>
-      <line num="85" type="stmt" count="5"/>
-      <line num="101" type="method" name="plus" visibility="public" complexity="1" crap="1" count="34"/>
-      <line num="104" type="stmt" count="34"/>
-      <line num="105" type="stmt" count="34"/>
-      <line num="121" type="method" name="subtract" visibility="public" complexity="1" crap="1" count="5"/>
-      <line num="124" type="stmt" count="5"/>
-      <line num="125" type="stmt" count="5"/>
-      <line num="136" type="method" name="unserialize" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="138" type="stmt" count="0"/>
-      <line num="139" type="stmt" count="0"/>
-      <line num="141" type="stmt" count="0"/>
-      <line num="156" type="method" name="divide" visibility="public" complexity="1" crap="1" count="5"/>
-      <line num="159" type="stmt" count="5"/>
-      <line num="160" type="stmt" count="5"/>
-      <line num="167" type="stmt" count="0"/>
-      <metrics loc="166" ncloc="89" classes="1" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="14" elements="26" coveredelements="20"/>
+      <line num="61" type="method" name="modulus" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="64" type="stmt" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="81" type="method" name="multiply" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="84" type="stmt" count="0"/>
+      <line num="85" type="stmt" count="0"/>
+      <line num="101" type="method" name="plus" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="104" type="stmt" count="0"/>
+      <line num="105" type="stmt" count="0"/>
+      <line num="121" type="method" name="subtract" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="124" type="stmt" count="0"/>
+      <line num="125" type="stmt" count="0"/>
+      <line num="141" type="method" name="signedSubtract" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="144" type="stmt" count="1"/>
+      <line num="145" type="stmt" count="1"/>
+      <line num="148" type="stmt" count="1"/>
+      <line num="149" type="stmt" count="1"/>
+      <line num="158" type="method" name="unserialize" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="160" type="stmt" count="0"/>
+      <line num="161" type="stmt" count="0"/>
+      <line num="163" type="stmt" count="0"/>
+      <line num="178" type="method" name="divide" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="181" type="stmt" count="0"/>
+      <line num="182" type="stmt" count="0"/>
+      <line num="189" type="stmt" count="0"/>
+      <metrics loc="188" ncloc="101" classes="1" methods="9" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="8" elements="31" coveredelements="10"/>
     </file>
-    <metrics files="9" loc="1173" ncloc="609" classes="6" methods="53" coveredmethods="30" conditionals="0" coveredconditionals="0" statements="154" coveredstatements="108" elements="207" coveredelements="138"/>
+    <metrics files="9" loc="1195" ncloc="621" classes="6" methods="54" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="158" coveredstatements="54" elements="212" coveredelements="64"/>
   </project>
 </coverage>
