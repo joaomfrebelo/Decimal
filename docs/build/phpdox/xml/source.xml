@@ -13,7 +13,7 @@
         <file name="Decimal.php" size="4698" time="2020-09-05T21:04:33+01:00" unixtime="1599336273" sha1="8512be3c2a6bdd04389c1f9c9a05bc42f484d302" xml="tokens/Rebelo/Decimal/Decimal.php.xml"/>
         <file name="DecimalException.php" size="589" time="2020-09-05T19:19:13+01:00" unixtime="1599329953" sha1="4ebb7b373e712dc835c36473c6f9d51a00d21b59" xml="tokens/Rebelo/Decimal/DecimalException.php.xml"/>
         <file name="RoundMode.php" size="1047" time="2020-09-05T21:18:23+01:00" unixtime="1599337103" sha1="0339a659ffd30340d5d1840a2ca3172dc5f08248" xml="tokens/Rebelo/Decimal/RoundMode.php.xml"/>
-        <file name="UDecimal.php" size="4518" time="2020-09-05T21:06:52+01:00" unixtime="1599336412" sha1="9aad4dbac6bc912426b25bde729dbff72f81d06a" xml="tokens/Rebelo/Decimal/UDecimal.php.xml"/>
+        <file name="UDecimal.php" size="5284" time="2020-09-20T21:04:42+01:00" unixtime="1600632282" sha1="e46c2bef88262f3c8c0885c97b063fad22763945" xml="tokens/Rebelo/Decimal/UDecimal.php.xml"/>
       </dir>
     </dir>
   </dir>

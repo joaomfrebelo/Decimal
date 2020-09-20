@@ -11,8 +11,8 @@
     <class name="Decimal" src="Rebelo/Decimal/Decimal.php" description="Decimal number" xml="classes/Rebelo_Decimal_Decimal.xml"/>
     <class name="DecimalException" src="Rebelo/Decimal/DecimalException.php" description="Exception class to be used in Decimal" xml="classes/Rebelo_Decimal_DecimalException.xml"/>
     <class name="RoundMode" src="Rebelo/Decimal/RoundMode.php" description="Round mode to be used to the \Rebelo\Decimal\Base\ADecimal" xml="classes/Rebelo_Decimal_RoundMode.xml"/>
-    <class name="UDecimal" src="Rebelo/Decimal/UDecimal.php" description="UDecimal class Unsigned decimal number" xml="classes/Rebelo_Decimal_UDecimal.xml"/>
-  </namespace>
+    
+  <class name="UDecimal" src="Rebelo/Decimal/UDecimal.php" description="UDecimal class Unsigned decimal number" xml="classes/Rebelo_Decimal_UDecimal.xml"/></namespace>
   <namespace name="">
     <class name="Exception" xml="classes/Exception.xml"/>
   </namespace>

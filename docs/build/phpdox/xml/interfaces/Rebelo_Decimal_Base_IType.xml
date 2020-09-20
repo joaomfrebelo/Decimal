@@ -49,5 +49,5 @@
     <class full="Rebelo\Decimal\Base\AType" namespace="Rebelo\Decimal\Base" name="AType"/>
     <class full="Rebelo\Decimal\Decimal" namespace="Rebelo\Decimal" name="Decimal"/>
     <class full="Rebelo\Decimal\UDecimal" namespace="Rebelo\Decimal" name="UDecimal"/>
-  </implementors>
+  <class full="Rebelo\Decimal\UDecimal" namespace="Rebelo\Decimal" name="UDecimal"/></implementors>
 </interface>
