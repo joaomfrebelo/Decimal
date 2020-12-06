@@ -889,4 +889,43 @@ class UDecimalTest
         $this->assertTrue($dec->isGreater(0.5));
         $this->assertTrue($dec->isGreater($dec->subtract(0.5)));
     }
+    
+    /**
+     *
+     * @return void
+     */
+    public function testIsGreaterOrEqual() :void
+    {
+        $num = 9;
+        $dec = new UDecimal($num, 2);
+        
+        $this->assertTrue($dec->isGreaterOrEqual($num));
+        $this->assertTrue($dec->isGreaterOrEqual($num - 0.01));
+        $this->assertTrue($dec->isGreaterOrEqual($num - 0.001));
+        $this->assertTrue($dec->isGreaterOrEqual($num - 1));
+        
+        $this->assertFalse($dec->isGreaterOrEqual($num + 0.001));
+        $this->assertFalse($dec->isGreaterOrEqual($num + 0.01));
+        $this->assertFalse($dec->isGreaterOrEqual($num + 1.0));
+    }
+    
+    /**
+     *
+     * @return void
+     */
+    public function testIsLessOrEqual() :void 
+    {
+        $num = 9;
+        $dec = new UDecimal($num, 2);
+        
+        $this->assertTrue($dec->isLessOrEqual($num));
+        
+        $this->assertFalse($dec->isLessOrEqual($num - 0.01));
+        $this->assertFalse($dec->isLessOrEqual($num - 0.001));
+        $this->assertFalse($dec->isLessOrEqual($num - 1));
+        
+        $this->assertTrue($dec->isLessOrEqual($num + 0.001));
+        $this->assertTrue($dec->isLessOrEqual($num + 0.01));
+        $this->assertTrue($dec->isLessOrEqual($num + 1.0));
+    }
 }

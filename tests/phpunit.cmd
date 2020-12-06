@@ -1,1 +1,0 @@
-php %~dp0../vendor/phpunit/phpunit/phpunit --configuration %~dp0phpunit.xml --verbose %~dp0Rebelo/Test/Decimal "idekey=netbeans-xdebug"

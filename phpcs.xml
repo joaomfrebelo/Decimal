@@ -6,7 +6,9 @@
     <!-- check all files in the app directory-->
     <file>src</file>
     <file>tests/Rebelo</file>
-
+    <exclude-pattern>tests/Rebelo/Test/Decimal/GenerateDecimalSamples/*</exclude-pattern>
+    <exclude-pattern>tests/Rebelo/Test/Decimal/decimals*.php</exclude-pattern>
+    
     <arg  value="nps"/>
 
     <rule ref="Zend">

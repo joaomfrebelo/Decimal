@@ -454,6 +454,32 @@ abstract class ADecimal
 
     /**
      *
+     * Returns true if this Adecimal is less or equal
+     *
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
+     * @return bool
+     */
+    public function isLessOrEqual($number): bool
+    {
+        $compare = $this->compare($number);
+        return $compare === - 1 || $compare === 0;
+    }
+
+    /**
+     *
+     * Returns true if this Adecimal is greater
+     *
+     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
+     * @return bool
+     */
+    public function isGreaterOrEqual($number): bool
+    {
+        $compare = $this->compare($number);
+        return $compare === 1 || $compare === 0;
+    }
+
+    /**
+     *
      * Returns true if this Adecimal is greater
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
