@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base" file="ADecimal.php" realpath="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base/ADecimal.php" size="15407" time="2020-09-06T11:39:47+01:00" unixtime="1599388787" sha1="a7f723c79f3d91b7d5a2878b2c8a0b1450047f89" relative="Rebelo/Decimal/Base/ADecimal.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base" file="ADecimal.php" realpath="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base/ADecimal.php" size="16048" time="2020-12-06T10:00:45+00:00" unixtime="1607248845" sha1="927dc162c0a3d4b2acd7f582b8fb1bb093ff7dd0" relative="Rebelo/Decimal/Base/ADecimal.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -2828,7 +2828,7 @@
     <token name="T_DOC_COMMENT">     *</token>
   </line>
   <line no="457">
-    <token name="T_DOC_COMMENT">     * Returns true if this Adecimal is greater</token>
+    <token name="T_DOC_COMMENT">     * Returns true if this Adecimal is less or equal</token>
   </line>
   <line no="458">
     <token name="T_DOC_COMMENT">     *</token>
@@ -2848,7 +2848,7 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_FUNCTION">function</token>
     <token name="T_WHITESPACE"> </token>
-    <token name="T_STRING">isGreater</token>
+    <token name="T_STRING">isLessOrEqual</token>
     <token name="T_PHPDOX_OPEN_BRACKET">(</token>
     <token name="T_VARIABLE">$number</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
@@ -2861,6 +2861,164 @@
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
   <line no="464">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$compare</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">compare</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$number</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="465">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$compare</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_IS_IDENTICAL">===</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_MINUS">-</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_BOOLEAN_OR">||</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$compare</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_IS_IDENTICAL">===</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="466">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="467"/>
+  <line no="468">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="469">
+    <token name="T_DOC_COMMENT">     *</token>
+  </line>
+  <line no="470">
+    <token name="T_DOC_COMMENT">     * Returns true if this Adecimal is greater</token>
+  </line>
+  <line no="471">
+    <token name="T_DOC_COMMENT">     *</token>
+  </line>
+  <line no="472">
+    <token name="T_DOC_COMMENT">     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number</token>
+  </line>
+  <line no="473">
+    <token name="T_DOC_COMMENT">     * @return bool</token>
+  </line>
+  <line no="474">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="475">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">isGreaterOrEqual</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$number</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">bool</token>
+  </line>
+  <line no="476">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="477">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$compare</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">compare</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$number</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="478">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$compare</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_IS_IDENTICAL">===</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_BOOLEAN_OR">||</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$compare</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_IS_IDENTICAL">===</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="479">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="480"/>
+  <line no="481">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="482">
+    <token name="T_DOC_COMMENT">     *</token>
+  </line>
+  <line no="483">
+    <token name="T_DOC_COMMENT">     * Returns true if this Adecimal is greater</token>
+  </line>
+  <line no="484">
+    <token name="T_DOC_COMMENT">     *</token>
+  </line>
+  <line no="485">
+    <token name="T_DOC_COMMENT">     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number</token>
+  </line>
+  <line no="486">
+    <token name="T_DOC_COMMENT">     * @return bool</token>
+  </line>
+  <line no="487">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="488">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">isGreater</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$number</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">bool</token>
+  </line>
+  <line no="489">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="490">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -2876,28 +3034,28 @@
     <token name="T_LNUMBER">1</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="465">
+  <line no="491">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="466"/>
-  <line no="467">
+  <line no="492"/>
+  <line no="493">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="468">
+  <line no="494">
     <token name="T_DOC_COMMENT">     * Get the RoudMode</token>
   </line>
-  <line no="469">
+  <line no="495">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="470">
+  <line no="496">
     <token name="T_DOC_COMMENT">     * @return RoundMode</token>
   </line>
-  <line no="471">
+  <line no="497">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="472">
+  <line no="498">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -2910,11 +3068,11 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">RoundMode</token>
   </line>
-  <line no="473">
+  <line no="499">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="474">
+  <line no="500">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -2928,31 +3086,31 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="475">
+  <line no="501">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="476"/>
-  <line no="477">
+  <line no="502"/>
+  <line no="503">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="478">
+  <line no="504">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="479">
+  <line no="505">
     <token name="T_DOC_COMMENT">     * Get precision</token>
   </line>
-  <line no="480">
+  <line no="506">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="481">
+  <line no="507">
     <token name="T_DOC_COMMENT">     * @return int</token>
   </line>
-  <line no="482">
+  <line no="508">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="483">
+  <line no="509">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -2965,11 +3123,11 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">int</token>
   </line>
-  <line no="484">
+  <line no="510">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="485">
+  <line no="511">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -2978,31 +3136,31 @@
     <token name="T_STRING">precision</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="486">
+  <line no="512">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="487"/>
-  <line no="488">
+  <line no="513"/>
+  <line no="514">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="489">
+  <line no="515">
     <token name="T_DOC_COMMENT">     * Rteurn false if the number doesn't have decomal</token>
   </line>
-  <line no="490">
+  <line no="516">
     <token name="T_DOC_COMMENT">     * part or is equal to zero</token>
   </line>
-  <line no="491">
+  <line no="517">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="492">
+  <line no="518">
     <token name="T_DOC_COMMENT">     * @return bool</token>
   </line>
-  <line no="493">
+  <line no="519">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="494">
+  <line no="520">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -3015,11 +3173,11 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">bool</token>
   </line>
-  <line no="495">
+  <line no="521">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="496">
+  <line no="522">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -3038,31 +3196,31 @@
     <token name="T_DNUMBER">0.0</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="497">
+  <line no="523">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="498"/>
-  <line no="499">
+  <line no="524"/>
+  <line no="525">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="500">
+  <line no="526">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="501">
+  <line no="527">
     <token name="T_DOC_COMMENT">     * A int of this decimal value rounded to the next lowest int</token>
   </line>
-  <line no="502">
+  <line no="528">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="503">
+  <line no="529">
     <token name="T_DOC_COMMENT">     * @return int</token>
   </line>
-  <line no="504">
+  <line no="530">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="505">
+  <line no="531">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -3075,11 +3233,11 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">int</token>
   </line>
-  <line no="506">
+  <line no="532">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="507">
+  <line no="533">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -3096,31 +3254,31 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="508">
+  <line no="534">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="509"/>
-  <line no="510">
+  <line no="535"/>
+  <line no="536">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="511">
+  <line no="537">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="512">
+  <line no="538">
     <token name="T_DOC_COMMENT">     * A int of this decimal value rounded up to the next highest int</token>
   </line>
-  <line no="513">
+  <line no="539">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="514">
+  <line no="540">
     <token name="T_DOC_COMMENT">     * @return int</token>
   </line>
-  <line no="515">
+  <line no="541">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="516">
+  <line no="542">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -3133,11 +3291,11 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">int</token>
   </line>
-  <line no="517">
+  <line no="543">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="518">
+  <line no="544">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -3154,34 +3312,34 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="519">
+  <line no="545">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="520"/>
-  <line no="521">
+  <line no="546"/>
+  <line no="547">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="522">
+  <line no="548">
     <token name="T_DOC_COMMENT">     * Set a new RoundMode to the Decimal calculation</token>
   </line>
-  <line no="523">
+  <line no="549">
     <token name="T_DOC_COMMENT">     * Only have efect at next operations</token>
   </line>
-  <line no="524">
+  <line no="550">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="525">
+  <line no="551">
     <token name="T_DOC_COMMENT">     * @param RoundMode $roundMode</token>
   </line>
-  <line no="526">
+  <line no="552">
     <token name="T_DOC_COMMENT">     * @return void</token>
   </line>
-  <line no="527">
+  <line no="553">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="528">
+  <line no="554">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -3202,11 +3360,11 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">void</token>
   </line>
-  <line no="529">
+  <line no="555">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="530">
+  <line no="556">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$this</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -3221,34 +3379,34 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="531">
+  <line no="557">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="532"/>
-  <line no="533">
+  <line no="558"/>
+  <line no="559">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="534">
+  <line no="560">
     <token name="T_DOC_COMMENT">     * Set the precision of the Decimal</token>
   </line>
-  <line no="535">
+  <line no="561">
     <token name="T_DOC_COMMENT">     * the Decimal will be Rouded to the new precision</token>
   </line>
-  <line no="536">
+  <line no="562">
     <token name="T_DOC_COMMENT">     *</token>
   </line>
-  <line no="537">
+  <line no="563">
     <token name="T_DOC_COMMENT">     * @param int $precision</token>
   </line>
-  <line no="538">
+  <line no="564">
     <token name="T_DOC_COMMENT">     * @return void</token>
   </line>
-  <line no="539">
+  <line no="565">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="540">
+  <line no="566">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -3264,11 +3422,11 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">void</token>
   </line>
-  <line no="541">
+  <line no="567">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="542">
+  <line no="568">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$this</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -3278,7 +3436,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="543">
+  <line no="569">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$this</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -3289,7 +3447,7 @@
     <token name="T_VARIABLE">$precision</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="544">
+  <line no="570">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$this</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -3298,18 +3456,18 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="545">
+  <line no="571">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="546">
+  <line no="572">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="547"/>
-  <line no="548">
+  <line no="573"/>
+  <line no="574">
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="549"/>
+  <line no="575"/>
 </source>

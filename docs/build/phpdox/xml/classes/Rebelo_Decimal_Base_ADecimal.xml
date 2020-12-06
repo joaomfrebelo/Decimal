@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Rebelo\Decimal\Base\ADecimal" namespace="Rebelo\Decimal\Base" name="ADecimal" abstract="true" final="false" start="26" end="548">
-  <file path="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base" file="ADecimal.php" realpath="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base/ADecimal.php" size="15407" time="2020-09-06T11:39:47+01:00" unixtime="1599388787" sha1="a7f723c79f3d91b7d5a2878b2c8a0b1450047f89" relative="Rebelo/Decimal/Base/ADecimal.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Rebelo\Decimal\Base\ADecimal" namespace="Rebelo\Decimal\Base" name="ADecimal" abstract="true" final="false" start="26" end="574">
+  <file path="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base" file="ADecimal.php" realpath="D:/NetBeansProjects/PHP/Decimal/src/Rebelo/Decimal/Base/ADecimal.php" size="16048" time="2020-12-06T10:00:45+00:00" unixtime="1607248845" sha1="927dc162c0a3d4b2acd7f582b8fb1bb093ff7dd0" relative="Rebelo/Decimal/Base/ADecimal.php"/>
   <docblock>
     <description compact="Object oriented class to use the scalar php datatye float as decimal mantaining the precision">If the number to initialize as Decimal have more decimal places that the precision
 the number is will be rounded to the precison in the constructor and with
@@ -400,7 +400,20 @@ if this ADecimal is grater return 1</description>
     <return type="bool" nullable="false"/>
     <parameter name="number" byreference="false" type="{unknown}"/>
   </method>
-  <method name="isGreater" start="462" end="465" abstract="false" final="false" static="false" visibility="public">
+  <method name="isLessOrEqual" start="462" end="466" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Returns true if this Adecimal is less or equal"/>
+      <param type="object" variable="$number">
+        <type full="\Rebelo\Decimal\Base\ADecimal|float|int" namespace="\Rebelo\Decimal\Base" name="ADecimal|float|int"/>
+      </param>
+      <return type="object">
+        <type full="Rebelo\Decimal\Base\bool" namespace="Rebelo\Decimal\Base" name="bool"/>
+      </return>
+    </docblock>
+    <return type="bool" nullable="false"/>
+    <parameter name="number" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="isGreaterOrEqual" start="475" end="479" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Returns true if this Adecimal is greater"/>
       <param type="object" variable="$number">
@@ -413,7 +426,20 @@ if this ADecimal is grater return 1</description>
     <return type="bool" nullable="false"/>
     <parameter name="number" byreference="false" type="{unknown}"/>
   </method>
-  <method name="getRounMode" start="472" end="475" abstract="false" final="false" static="false" visibility="public">
+  <method name="isGreater" start="488" end="491" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Returns true if this Adecimal is greater"/>
+      <param type="object" variable="$number">
+        <type full="\Rebelo\Decimal\Base\ADecimal|float|int" namespace="\Rebelo\Decimal\Base" name="ADecimal|float|int"/>
+      </param>
+      <return type="object">
+        <type full="Rebelo\Decimal\Base\bool" namespace="Rebelo\Decimal\Base" name="bool"/>
+      </return>
+    </docblock>
+    <return type="bool" nullable="false"/>
+    <parameter name="number" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getRounMode" start="498" end="501" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Get the RoudMode"/>
       <return type="object">
@@ -424,14 +450,14 @@ if this ADecimal is grater return 1</description>
       <type full="Rebelo\Decimal\RoundMode" namespace="Rebelo\Decimal" name="RoundMode"/>
     </return>
   </method>
-  <method name="getPrecision" start="483" end="486" abstract="false" final="false" static="false" visibility="public">
+  <method name="getPrecision" start="509" end="512" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Get precision"/>
       <return type="int"/>
     </docblock>
     <return type="int" nullable="false"/>
   </method>
-  <method name="hasDecimalPart" start="494" end="497" abstract="false" final="false" static="false" visibility="public">
+  <method name="hasDecimalPart" start="520" end="523" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Rteurn false if the number doesn't have decomal part or is equal to zero"/>
       <return type="object">
@@ -440,21 +466,21 @@ if this ADecimal is grater return 1</description>
     </docblock>
     <return type="bool" nullable="false"/>
   </method>
-  <method name="flor" start="505" end="508" abstract="false" final="false" static="false" visibility="public">
+  <method name="flor" start="531" end="534" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="A int of this decimal value rounded to the next lowest int"/>
       <return type="int"/>
     </docblock>
     <return type="int" nullable="false"/>
   </method>
-  <method name="ceil" start="516" end="519" abstract="false" final="false" static="false" visibility="public">
+  <method name="ceil" start="542" end="545" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="A int of this decimal value rounded up to the next highest int"/>
       <return type="int"/>
     </docblock>
     <return type="int" nullable="false"/>
   </method>
-  <method name="setRoundMode" start="528" end="531" abstract="false" final="false" static="false" visibility="public">
+  <method name="setRoundMode" start="554" end="557" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Set a new RoundMode to the Decimal calculation Only have efect at next operations"/>
       <param type="object" variable="$roundMode">
@@ -469,7 +495,7 @@ if this ADecimal is grater return 1</description>
       <type full="Rebelo\Decimal\RoundMode" namespace="Rebelo\Decimal" name="RoundMode"/>
     </parameter>
   </method>
-  <method name="setPrecision" start="540" end="546" abstract="false" final="false" static="false" visibility="public">
+  <method name="setPrecision" start="566" end="572" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Set the precision of the Decimal the Decimal will be Rouded to the new precision"/>
       <param type="int" variable="$precision"/>

@@ -4,7 +4,7 @@
     <dir name="Rebelo">
       <dir name="Decimal">
         <dir name="Base">
-          <file name="ADecimal.php" size="15407" time="2020-09-06T11:39:47+01:00" unixtime="1599388787" sha1="a7f723c79f3d91b7d5a2878b2c8a0b1450047f89" xml="tokens/Rebelo/Decimal/Base/ADecimal.php.xml"/>
+          <file name="ADecimal.php" size="16048" time="2020-12-06T10:00:45+00:00" unixtime="1607248845" sha1="927dc162c0a3d4b2acd7f582b8fb1bb093ff7dd0" xml="tokens/Rebelo/Decimal/Base/ADecimal.php.xml"/>
           <file name="AType.php" size="1545" time="2020-09-06T12:27:13+01:00" unixtime="1599391633" sha1="8bf49d1e7fdb3be1869a1f7b0a541fa804907603" xml="tokens/Rebelo/Decimal/Base/AType.php.xml"/>
           <file name="IDecimal.php" size="1114" time="2020-09-05T17:44:36+01:00" unixtime="1599324276" sha1="32094527497b4fb4a86b208abd85d9591bb7e057" xml="tokens/Rebelo/Decimal/Base/IDecimal.php.xml"/>
           <file name="IType.php" size="915" time="2020-09-05T17:44:42+01:00" unixtime="1599324282" sha1="75b25feeb665371a15e680750877e399484cc51b" xml="tokens/Rebelo/Decimal/Base/IType.php.xml"/>

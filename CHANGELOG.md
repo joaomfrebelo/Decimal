@@ -1,6 +1,13 @@
 # Changelog
 
 
+## Changes in joaomfrebelo/decimal
+
+### Changes
+
+* Update Enum version chg: phpunit configuration chg: php code style configuration new: make file new: comparation method isGreaterOrEqual new: comparation method isLessOrEqual. [João Rebelo]
+
+
 ## 2.0.2 (2020-09-20)
 
 ### New
