@@ -1,20 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<source xmlns="http://xml.phpdox.net/src">
-  <dir name="D:/NetBeansProjects/PHP/Decimal/src">
-    <dir name="Rebelo">
-      <dir name="Decimal">
-        <dir name="Base">
-          <file name="ADecimal.php" size="16048" time="2020-12-06T10:00:45+00:00" unixtime="1607248845" sha1="927dc162c0a3d4b2acd7f582b8fb1bb093ff7dd0" xml="tokens/Rebelo/Decimal/Base/ADecimal.php.xml"/>
-          <file name="AType.php" size="1545" time="2020-09-06T12:27:13+01:00" unixtime="1599391633" sha1="8bf49d1e7fdb3be1869a1f7b0a541fa804907603" xml="tokens/Rebelo/Decimal/Base/AType.php.xml"/>
-          <file name="IDecimal.php" size="1114" time="2020-09-05T17:44:36+01:00" unixtime="1599324276" sha1="32094527497b4fb4a86b208abd85d9591bb7e057" xml="tokens/Rebelo/Decimal/Base/IDecimal.php.xml"/>
-          <file name="IType.php" size="915" time="2020-09-05T17:44:42+01:00" unixtime="1599324282" sha1="75b25feeb665371a15e680750877e399484cc51b" xml="tokens/Rebelo/Decimal/Base/IType.php.xml"/>
-          <file name="IUDecimal.php" size="1121" time="2020-09-05T17:44:48+01:00" unixtime="1599324288" sha1="b7392ea3837e46d6b1c458f3b0327c583d71f682" xml="tokens/Rebelo/Decimal/Base/IUDecimal.php.xml"/>
-        </dir>
-        <file name="Decimal.php" size="4698" time="2020-09-05T21:04:33+01:00" unixtime="1599336273" sha1="8512be3c2a6bdd04389c1f9c9a05bc42f484d302" xml="tokens/Rebelo/Decimal/Decimal.php.xml"/>
-        <file name="DecimalException.php" size="589" time="2020-09-05T19:19:13+01:00" unixtime="1599329953" sha1="4ebb7b373e712dc835c36473c6f9d51a00d21b59" xml="tokens/Rebelo/Decimal/DecimalException.php.xml"/>
-        <file name="RoundMode.php" size="1047" time="2020-09-05T21:18:23+01:00" unixtime="1599337103" sha1="0339a659ffd30340d5d1840a2ca3172dc5f08248" xml="tokens/Rebelo/Decimal/RoundMode.php.xml"/>
-        <file name="UDecimal.php" size="5284" time="2020-09-20T21:04:42+01:00" unixtime="1600632282" sha1="e46c2bef88262f3c8c0885c97b063fad22763945" xml="tokens/Rebelo/Decimal/UDecimal.php.xml"/>
-      </dir>
-    </dir>
-  </dir>
-</source>
+<source xmlns="http://xml.phpdox.net/src"/>

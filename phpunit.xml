@@ -18,14 +18,14 @@
 	 timeoutForMediumTests="10" 
 	 timeoutForLargeTests="60" 
 	 verbose="true" 
-	 bootstrap="bootstrap.php" 
+	 bootstrap="./tests/bootstrap.php" 
 	 failOnWarning="true">
     <coverage processUncoveredFiles="true">
 	<include>
-	    <directory suffix=".php">../src</directory>
+	    <directory suffix=".php">./src</directory>
 	</include>
 	<report>
-	    <clover outputFile="../docs/build/coverage/index.xml"/>
+	    <clover outputFile="./docs/build/coverage/index.xml"/>
 	</report>
     </coverage>
     <php>

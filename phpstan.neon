@@ -1,13 +1,11 @@
 parameters:
-	level: 7
+	level: 8
 	checkMissingIterableValueType: false
 	paths:
 		- src
 		- tests
 	ignoreErrors:
-		- '#.+should return Rebelo\\Decimal\\(U)?Decimal but returns Rebelo\\Decimal\\Base\\ADecimal#'
 		- '#.+constructor expects float\|int\|Rebelo\\Decimal\\Decimal\|string,\X+float\|int\|Rebelo\\Decimal\\Base\\ADecimal given#'
-		- '#.+function spl_autoload_register expects callable\(string\).+#'
 	excludes_analyse:
 		- tests/Rebelo/Test/Decimal/decimalsDiv.php
 		- tests/Rebelo/Test/Decimal/decimalsMul.php

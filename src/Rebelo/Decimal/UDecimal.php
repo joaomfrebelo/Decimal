@@ -13,12 +13,15 @@ use Rebelo\Decimal\RoundMode;
 /**
  * UDecimal class
  * Unsigned decimal number
- *
+ * @method \Rebelo\Decimal\UDecimal divide(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
+ * @method \Rebelo\Decimal\UDecimal modulus(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
+ * @method \Rebelo\Decimal\UDecimal multiply(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
+ * @method \Rebelo\Decimal\UDecimal plus(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
+ * @method \Rebelo\Decimal\UDecimal subtract(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
+ * 
  * @author João Rebelo
  */
-class UDecimal
-    extends Base\ADecimal
-    implements Base\IUDecimal
+class UDecimal extends Base\ADecimal
 {
 
     /**
@@ -27,105 +30,13 @@ class UDecimal
      *
      * @see \Rebelo\Decimal\Base\ADecimal::__construct()
      */
-    public function __construct($number, int $precision,
-                                RoundMode $roundMode = null)
+    public function __construct(
+        float|int|string|\Rebelo\Decimal\Decimal $number, 
+        int $precision,
+        \Rebelo\Decimal\RoundMode $roundMode = null)
     {
         $this->isUnsigned = true;
-        parent::__construct(
-            $number,
-            $precision,
-            $roundMode
-        );
-    }
-
-    /**
-     * Get a Decimal that if the absolute value of this
-     * @return \Rebelo\Decimal\Decimal
-     */
-    public function abs(): \Rebelo\Decimal\Decimal
-    {
-        return parent::abs();
-    }
-
-    /**
-     * Return a new UDecimal whose the value is the reminder of this demcial divided
-     * by $number.
-     * If $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
-     *
-     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
-     * @param int|null $precision
-     * @param \Rebelo\Decimal\RoundMode $roundMode
-     * @return \Rebelo\Decimal\UDecimal
-     */
-    public function modulus($number, ?int $precision = null,
-                            RoundMode $roundMode = null): UDecimal
-    {
-        return $this->aModulus(
-            $number,
-            $precision,
-            $roundMode
-        );
-    }
-
-    /**
-     * Return a new UDecimal whose the value is this demcial muliplied by $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
-     *
-     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
-     * @param int|null $precision
-     * @param \Rebelo\Decimal\RoundMode $roundMode
-     * @return \Rebelo\Decimal\UDecimal
-     */
-    public function multiply($number, ?int $precision = null,
-                             RoundMode $roundMode = null): UDecimal
-    {
-        return $this->aMultiply(
-            $number,
-            $precision,
-            $roundMode
-        );
-    }
-
-    /**
-     * Return a new UDecimal whose the value is this demcial plus $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
-     *
-     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
-     * @param int|null $precision
-     * @param \Rebelo\Decimal\RoundMode $roundMode
-     * @return \Rebelo\Decimal\UDecimal
-     */
-    public function plus($number, ?int $precision = null,
-                         RoundMode $roundMode = null): UDecimal
-    {
-        return $this->aPlus(
-            $number,
-            $precision,
-            $roundMode
-        );
-    }
-
-    /**
-     * Return a new UDecimal (unsigned decimal) whose the value is this demcial minus $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
-     *
-     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
-     * @param int|null $precision
-     * @param \Rebelo\Decimal\RoundMode $roundMode
-     * @return \Rebelo\Decimal\UDecimal
-     */
-    public function subtract($number, ?int $precision = null,
-                             RoundMode $roundMode = null): UDecimal
-    {
-        return $this->aSubtract(
-            $number,
-            $precision,
-            $roundMode
-        );
+        parent::__construct($number, $precision, $roundMode);
     }
 
     /**
@@ -138,8 +49,10 @@ class UDecimal
      * @param \Rebelo\Decimal\RoundMode $roundMode
      * @return \Rebelo\Decimal\Decimal
      */
-    public function signedSubtract($number, ?int $precision = null,
-                                   RoundMode $roundMode = null): Decimal
+    public function signedSubtract(
+        \Rebelo\Decimal\Base\ADecimal|float|int$number, 
+        ?int $precision = null,
+        RoundMode $roundMode = null): Decimal
     {
         $dec = new Decimal(
             $this->valueOf(), $this->precision, new RoundMode($this->roundMode)
@@ -160,26 +73,6 @@ class UDecimal
             [
                 "allowed_classes" => [\Rebelo\Decimal\UDecimal::class]
             ]
-        );
-    }
-
-    /**
-     * Return a new Decimal whose the value is this demcial divided by $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
-     *
-     * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
-     * @param int|null $precision
-     * @param RoundMode $roundMode
-     * @return \Rebelo\Decimal\UDecimal
-     */
-    public function divide($number, ?int $precision = null,
-                           RoundMode $roundMode = null): UDecimal
-    {
-        return $this->aDivide(
-            $number,
-            $precision,
-            $roundMode
         );
     }
 

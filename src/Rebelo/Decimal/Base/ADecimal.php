@@ -21,10 +21,9 @@ use Rebelo\Decimal\DecimalException;
  * the RoundMode in the contructor
  *
  *
- * @author joao
+ * @author Joao M F Rebelo
  */
-abstract class ADecimal
-    extends AType
+abstract class ADecimal extends AType implements IConstruct
 {
 
     /**
@@ -61,13 +60,15 @@ abstract class ADecimal
      *
      * The default RoundMode is RoundMode::HALF_UP
      *
-     * @param float|double|int|string|\Rebelo\Decimal\Decimal $number
+     * @param float|int|string|\Rebelo\Decimal\Decimal $number
      * @param int $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode|null $roundMode the round mode
      * @throws \InvalidArgumentException
      */
-    public function __construct($number, int $precision,
-                                ?\Rebelo\Decimal\RoundMode $roundMode = null)
+    public function __construct(
+        float|int|string|\Rebelo\Decimal\Decimal $number, 
+        int $precision,
+        ?\Rebelo\Decimal\RoundMode $roundMode = null)
     {
         if (is_bool($this->isUnsigned) === false)
         {
@@ -76,9 +77,9 @@ abstract class ADecimal
 
         switch (true)
         {
-            case is_int($number):
-            case is_double($number):
-            case is_float($number):
+            case \is_int($number):
+            case \is_double($number):
+            case \is_float($number):
             case \is_numeric($number):
                 $this->data = (float) $number;
                 break;
@@ -152,18 +153,15 @@ abstract class ADecimal
      * @param float $number
      * @param int $precision
      * @param \Rebelo\Decimal\RoundMode $roundMode
-     * @return ADecimal
+     * @return static
      */
     protected function afterOperFactory(float $number, int $precision = null,
-                                        \Rebelo\Decimal\RoundMode $roundMode = null): ADecimal
+                                        \Rebelo\Decimal\RoundMode $roundMode = null): static
     {
-        $called = get_class($this);
-        return new $called(
+        return new static(
             $number,
             $precision === null ? $this->precision : $precision,
-            $roundMode === null
-            ? new RoundMode($this->roundMode)
-            : $roundMode
+            $roundMode === null ? new RoundMode($this->roundMode): $roundMode
         );
     }
 
@@ -187,11 +185,13 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|int|float $number
      * @param int $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode $roundMode the round mode     *
-     * @return \Rebelo\Decimal\Base\ADecimal The new instance result of operation
+     * @return static The new instance result of operation
      * @throws \Rebelo\Decimal\DecimalException
      */
-    protected function aPlus($number, ?int $precision = null,
-                             \Rebelo\Decimal\RoundMode $roundMode = null): ADecimal
+    public function plus(
+        \Rebelo\Decimal\Base\ADecimal|int|float $number, 
+        ?int $precision = null,
+        \Rebelo\Decimal\RoundMode $roundMode = null): static
     {
         $oper = $this->data + $this->numberToFloat($number);
         return $this->afterOperFactory($oper, $precision, $roundMode);
@@ -204,12 +204,14 @@ abstract class ADecimal
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number The number to subtract
      * @param int|null $precision the decimal part of the number to be rounded
-     * @param \Rebelo\Decimal\RoundMode $roundMode|null the round mode
-     * @return \Rebelo\Decimal\Base\ADecimal The new instance result of operation
+     * @param \Rebelo\Decimal\RoundMode|null $roundMode the round mode
+     * @return static The new instance result of operation
      * @throws \Rebelo\Decimal\DecimalException
      */
-    protected function aSubtract($number, ?int $precision = null,
-                                 ?\Rebelo\Decimal\RoundMode $roundMode = null): ADecimal
+    public function subtract(
+        \Rebelo\Decimal\Base\ADecimal|float|int $number, 
+        ?int $precision = null,
+        ?\Rebelo\Decimal\RoundMode $roundMode = null): static
     {
         $oper = $this->data - $this->numberToFloat($number);
         return $this->afterOperFactory($oper, $precision, $roundMode);
@@ -223,11 +225,13 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @param int|null $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode $roundMode  the round mode
-     * @return \Rebelo\Decimal\Base\ADecimal
+     * @return static
      * @throws \Rebelo\Decimal\DecimalException
      */
-    protected function aMultiply($number, ?int $precision = null,
-                                 \Rebelo\Decimal\RoundMode $roundMode = null): ADecimal
+    public function multiply(
+        \Rebelo\Decimal\Base\ADecimal|float|int $number, 
+        ?int $precision = null,
+        \Rebelo\Decimal\RoundMode $roundMode = null): static 
     {
         $oper = $this->data * $this->numberToFloat($number);
         return $this->afterOperFactory($oper, $precision, $roundMode);
@@ -241,11 +245,13 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @param int|null $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode $roundMode the round mode
-     * @return \Rebelo\Decimal\Base\ADecimal The new instance result of operation
+     * @return static The new instance result of operation
      * @throws \Rebelo\Decimal\DecimalException
      */
-    protected function aDivide($number, ?int $precision = null,
-                               \Rebelo\Decimal\RoundMode $roundMode = null): ADecimal
+    public function divide(
+        \Rebelo\Decimal\Base\ADecimal|float|int $number, 
+        ?int $precision = null,
+        \Rebelo\Decimal\RoundMode $roundMode = null): static
     {
         $valueOf = $this->numberToFloat($number);
         if ($valueOf === 0.0) {
@@ -264,15 +270,17 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @param int|null $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode $roundMode The round mode to be used the round mode
-     * @return \Rebelo\Decimal\Base\ADecimal The new instance result of operation
+     * @return static The new instance result of operation
      * @throws \Rebelo\Decimal\DecimalException
      */
-    protected function aModulus($number, ?int $precision = null,
-                                \Rebelo\Decimal\RoundMode $roundMode = null): ADecimal
+    public function modulus(
+        \Rebelo\Decimal\Base\ADecimal|float|int $number, 
+        ?int $precision = null,
+        \Rebelo\Decimal\RoundMode $roundMode = null): static
     {
         $valueOf = $this->numberToFloat($number);
         if ($valueOf === 0.0) {
-            throw new DecimalException("Can not modulus of division by zero in " . get_called_class());
+            throw new DecimalException("Can not modulus of division by zero in " . \get_class($this));
         }
         $oper = $this->data % $valueOf;
         return $this->afterOperFactory($oper, $precision, $roundMode);
@@ -285,7 +293,7 @@ abstract class ADecimal
      * @return void
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function plusThis($number): void
+    public function plusThis(\Rebelo\Decimal\Base\ADecimal|float|int $number): void
     {
         $this->data += $this->numberToFloat($number);
         $this->round();
@@ -298,7 +306,7 @@ abstract class ADecimal
      * @return void
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function subtractThis($number): void
+    public function subtractThis(\Rebelo\Decimal\Base\ADecimal|float|int $number): void
     {
         $this->data -= $this->numberToFloat($number);
         $this->round();
@@ -311,7 +319,7 @@ abstract class ADecimal
      * @return void
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function multiplyThis($number): void
+    public function multiplyThis(\Rebelo\Decimal\Base\ADecimal|float|int $number): void
     {
         $this->data *= $this->numberToFloat($number);
         $this->round();
@@ -324,7 +332,7 @@ abstract class ADecimal
      * @return void
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function divideThis($number): void
+    public function divideThis(\Rebelo\Decimal\Base\ADecimal|float|int $number): void
     {
         $valueOf = $this->numberToFloat($number);
         if ($valueOf === 0.0) {
@@ -375,7 +383,9 @@ abstract class ADecimal
             if (\preg_match("/E/", $fstr) === 1)
             {
                 $fstr = \number_format(
-                    $this->data, static::$maxPrecision, ".", ""
+                    $this->data, 
+                    static::getMaxPrecision(), 
+                    ".", ""
                 );
             }
             $this->data = (float) \bcadd("0", $fstr, $this->precision);
@@ -408,7 +418,7 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function equals($number): bool
+    public function equals(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
     {
         return $this->valueOf() === $this->numberToFloat($number);
     }
@@ -419,7 +429,7 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isEquals($number): bool
+    public function isEquals(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
     {
         return $this->equals($number);
     }
@@ -435,7 +445,7 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return int
      */
-    public function compare($number): int
+    public function compare(\Rebelo\Decimal\Base\ADecimal|float|int $number): int
     {
         return $this->valueOf() <=> $this->numberToFloat($number);
     }
@@ -447,7 +457,7 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isLess($number): bool
+    public function isLess(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
     {
         return $this->compare($number) === - 1;
     }
@@ -459,7 +469,7 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isLessOrEqual($number): bool
+    public function isLessOrEqual(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
     {
         $compare = $this->compare($number);
         return $compare === - 1 || $compare === 0;
@@ -472,7 +482,7 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isGreaterOrEqual($number): bool
+    public function isGreaterOrEqual(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
     {
         $compare = $this->compare($number);
         return $compare === 1 || $compare === 0;
@@ -485,7 +495,7 @@ abstract class ADecimal
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isGreater($number): bool
+    public function isGreater(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
     {
         return $this->compare($number) === 1;
     }
@@ -571,4 +581,32 @@ abstract class ADecimal
         return;
     }
 
+    /**
+     * Format the Decimal to a string
+     * @param string $decimalSep
+     * @param int|null $decimals If nul the precision will be used
+     * @param string $thousendsSep
+     * @return string
+     * @throws DecimalException
+     */
+    public function format(string $decimalSep = ".", ?int $decimals = null,  string $thousendsSep = "") : string
+    {
+        if($decimals < 0){
+            throw new DecimalException("Decimals can not be negative");
+        }
+        
+        $marks = [".", ","];
+        
+        if(\in_array($decimalSep, $marks) === false || \in_array($thousendsSep, ["", ...$marks]) === false){
+            throw new DecimalException("Decimal and thousends separator must be '.' or ','");
+        }
+         
+        return \number_format(
+            $this->data, 
+            $decimals ?? $this->precision, 
+            $decimalSep, 
+            $thousendsSep
+        );
+    }
+        
 }

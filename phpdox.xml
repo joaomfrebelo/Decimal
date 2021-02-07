@@ -44,7 +44,7 @@
                 <!-- PHPUnit Coverage XML --> 
                 <source type="phpunit">
                     <file name="../../docs/coverage/index.xml" />
-                </source>
+                </source>--> 
             </enrich>          
             <build engine="html" enabled="true" output="html">
                 <template dir="${phpDox.home}/templates/html"/>
