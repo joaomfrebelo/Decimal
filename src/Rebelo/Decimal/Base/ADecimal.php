@@ -9,16 +9,18 @@ declare(strict_types=1);
 
 namespace Rebelo\Decimal\Base;
 
+use JetBrains\PhpStorm\Pure;
+use Rebelo\Decimal\Decimal;
 use Rebelo\Decimal\RoundMode;
 use Rebelo\Decimal\DecimalException;
 
 /**
- * Object oriented class to use the scalar php datatye float as decimal
- * mantaining the precision
+ * Object-oriented class to use the scalar php data type float as decimal
+ * maintaining the precision
  *
  * If the number to initialize as Decimal have more decimal places that the precision
- * the number is will be rounded to the precison in the constructor and with
- * the RoundMode in the contructor
+ * the number is will be rounded to the precision in the constructor and with
+ * the RoundMode in the constructor
  *
  *
  * @author Joao M F Rebelo
@@ -51,10 +53,16 @@ abstract class ADecimal extends AType implements IConstruct
     protected int $roundMode;
 
     /**
-     * Define if is an usined instance
+     * Define if is an unsigned instance
      * @var bool|null
      */
     protected ?bool $isUnsigned = null;
+
+    /**
+     * If true the round meth will use all decimals
+     * @var bool
+     */
+    protected bool $highCalcPrecision;
 
     /**
      *
@@ -63,25 +71,27 @@ abstract class ADecimal extends AType implements IConstruct
      * @param float|int|string|\Rebelo\Decimal\Decimal $number
      * @param int $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode|null $roundMode the round mode
+     * @param bool $highCalcPrecision If true the round meth will use all decimals
      * @throws \InvalidArgumentException
+     * @throws \Rebelo\Decimal\DecimalException
      */
     public function __construct(
-        float|int|string|\Rebelo\Decimal\Decimal $number, 
-        int $precision,
-        ?\Rebelo\Decimal\RoundMode $roundMode = null)
+        float|int|string|Decimal $number,
+        int                      $precision,
+        ?RoundMode               $roundMode = null,
+        bool                     $highCalcPrecision = false
+    )
     {
-        if (is_bool($this->isUnsigned) === false)
-        {
+        if (is_bool($this->isUnsigned) === false) {
             throw new DecimalException("isUnsigned is not defined");
         }
 
-        switch (true)
-        {
+        switch (true) {
             case \is_int($number):
             case \is_double($number):
             case \is_float($number):
             case \is_numeric($number):
-                $this->data = (float) $number;
+                $this->data = (float)$number;
                 break;
             case $number instanceof ADecimal:
                 $this->data = $number->valueOf();
@@ -89,6 +99,8 @@ abstract class ADecimal extends AType implements IConstruct
             default:
                 throw new \InvalidArgumentException("Invalid argument type in " . __METHOD__);
         }
+
+        $this->highCalcPrecision = $highCalcPrecision;
 
         $this->checkPrecision($precision);
 
@@ -102,30 +114,29 @@ abstract class ADecimal extends AType implements IConstruct
     }
 
     /**
-     *  Check if the precision is in the valid tange values
+     *  Check if the precision is in the valid range values
      * @param int $precision The precision to be checked
      * @return void
      * @throws DecimalException Throws on values that are negative or above the defined in maxPrecision
      */
     protected function checkPrecision(int $precision): void
     {
-        if ($precision < 0 || $precision > static::getMaxPrecision())
-        {
-            throw new DecimalException("precision must be an int between 0 and ".static::getMaxPrecision());
+        if ($precision < 0 || $precision > static::getMaxPrecision()) {
+            throw new DecimalException("precision must be an int between 0 and " . static::getMaxPrecision());
         }
     }
 
     /**
      *
-     * Get the Max Precision, depends of the value that is
-     * setted in php.ini file, less 2
+     * Get the Max Precision, depends on the value that is
+     * set in php.ini file, less 2
      *
      * @return int The max precision allowed
      */
     public static function getMaxPrecision(): int
     {
         if (static::$maxPrecision === null) {
-            static::$maxPrecision = ((int) ini_get("precision")) - 2;
+            static::$maxPrecision = ((int)ini_get("precision")) - 2;
         }
         return static::$maxPrecision;
     }
@@ -137,31 +148,38 @@ abstract class ADecimal extends AType implements IConstruct
      */
     protected function checkSign(): void
     {
-        if ($this->isUnsigned && $this->data < 0)
-        {
+        if ($this->isUnsigned && $this->data < 0) {
             throw new DecimalException(
-                "Unsigned ".get_called_class()
-                ." can not be negative '".$this->data."'"
+                "Unsigned " . get_called_class()
+                . " can not be negative '" . $this->data . "'"
             );
         }
     }
 
     /**
      *
-     * Create the class to return after aritmetic operation
+     * Create the class to return after arithmetic operation
      *
      * @param float $number
-     * @param int $precision
-     * @param \Rebelo\Decimal\RoundMode $roundMode
+     * @param int|null $precision
+     * @param \Rebelo\Decimal\RoundMode|null $roundMode
+     * @param bool|null $highCalcPrecision If true the round meth will use all decimals
      * @return static
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
-    protected function afterOperFactory(float $number, int $precision = null,
-                                        \Rebelo\Decimal\RoundMode $roundMode = null): static
+    protected function afterOperationFactory(
+        float      $number,
+        ?int       $precision = null,
+        ?RoundMode $roundMode = null,
+        ?bool      $highCalcPrecision = null
+    ): static
     {
         return new static(
             $number,
-            $precision === null ? $this->precision : $precision,
-            $roundMode === null ? new RoundMode($this->roundMode): $roundMode
+            $precision ?? $this->precision,
+            $roundMode ?? new RoundMode($this->roundMode),
+            $highCalcPrecision ?? $this->highCalcPrecision
         );
     }
 
@@ -173,117 +191,137 @@ abstract class ADecimal extends AType implements IConstruct
      */
     public function valueOf(): float
     {
-        return \floatval($this->data);
+        return $this->data;
     }
 
     /**
      *
-     * Return a new ADecimal whose the value is this demcial plus $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
+     * Return a new ADecimal who's the value is this decimal plus $number
+     * if $precision and/or $roundMode are not supplied is used $this precision or/and
+     * $this roundMode
      *
      * @param \Rebelo\Decimal\Base\ADecimal|int|float $number
-     * @param int $precision the decimal part of the number to be rounded
-     * @param \Rebelo\Decimal\RoundMode $roundMode the round mode     *
+     * @param int|null $precision the decimal part of the number to be rounded
+     * @param \Rebelo\Decimal\RoundMode|null $roundMode the round mode
+     * @param bool|null $highCalcPrecision If true the round meth will use all decimals
      * @return static The new instance result of operation
      * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function plus(
-        \Rebelo\Decimal\Base\ADecimal|int|float $number, 
-        ?int $precision = null,
-        \Rebelo\Decimal\RoundMode $roundMode = null): static
+        ADecimal|int|float $number,
+        ?int               $precision = null,
+        ?RoundMode         $roundMode = null,
+        ?bool              $highCalcPrecision = null
+    ): static
     {
-        $oper = $this->data + $this->numberToFloat($number);
-        return $this->afterOperFactory($oper, $precision, $roundMode);
+        $result = $this->data + $this->numberToFloat($number);
+        return $this->afterOperationFactory($result, $precision, $roundMode, $highCalcPrecision);
     }
 
     /**
-     * Return a new Decimal whose the value is this demcial minus $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
+     * Return a new Decimal who's the value is this decimal minus $number
+     * if $precision and/or $roundMode are not supplied is used $this precision or/and
+     * $this roundMode
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number The number to subtract
      * @param int|null $precision the decimal part of the number to be rounded
      * @param \Rebelo\Decimal\RoundMode|null $roundMode the round mode
+     * @param bool|null $highCalcPrecision If true the round meth will use all decimals
      * @return static The new instance result of operation
      * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function subtract(
-        \Rebelo\Decimal\Base\ADecimal|float|int $number, 
-        ?int $precision = null,
-        ?\Rebelo\Decimal\RoundMode $roundMode = null): static
+        ADecimal|float|int $number,
+        ?int               $precision = null,
+        ?RoundMode         $roundMode = null,
+        ?bool              $highCalcPrecision = null
+    ): static
     {
-        $oper = $this->data - $this->numberToFloat($number);
-        return $this->afterOperFactory($oper, $precision, $roundMode);
+        $result = $this->data - $this->numberToFloat($number);
+        return $this->afterOperationFactory($result, $precision, $roundMode, $highCalcPrecision);
     }
 
     /**
-     * Return a new ADecimal whose the value is this demcial muliplied by $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
+     * Return a new ADecimal who's the value is this decimal multiplied by $number
+     * if $precision and/or $roundMode are not supplied is used $this precision or/and
+     * $this roundMode
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @param int|null $precision the decimal part of the number to be rounded
-     * @param \Rebelo\Decimal\RoundMode $roundMode  the round mode
+     * @param \Rebelo\Decimal\RoundMode|null $roundMode the round mode
+     * @param bool|null $highCalcPrecision If true the round meth will use all decimals
      * @return static
      * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function multiply(
-        \Rebelo\Decimal\Base\ADecimal|float|int $number, 
-        ?int $precision = null,
-        \Rebelo\Decimal\RoundMode $roundMode = null): static 
+        ADecimal|float|int $number,
+        ?int               $precision = null,
+        ?RoundMode         $roundMode = null,
+        ?bool              $highCalcPrecision = null
+    ): static
     {
-        $oper = $this->data * $this->numberToFloat($number);
-        return $this->afterOperFactory($oper, $precision, $roundMode);
+        $result = $this->data * $this->numberToFloat($number);
+        return $this->afterOperationFactory($result, $precision, $roundMode, $highCalcPrecision);
     }
 
     /**
-     * Return a new Decimal whose the value is this demcial divided by $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
+     * Return a new Decimal who's the value is this decimal divided by $number
+     * if $precision and/or $roundMode are not supplied is used $this precision or/and
+     * $this roundMode
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @param int|null $precision the decimal part of the number to be rounded
-     * @param \Rebelo\Decimal\RoundMode $roundMode the round mode
+     * @param \Rebelo\Decimal\RoundMode|null $roundMode the round mode
+     * @param bool|null $highCalcPrecision If true the round meth will use all decimals
      * @return static The new instance result of operation
      * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function divide(
-        \Rebelo\Decimal\Base\ADecimal|float|int $number, 
-        ?int $precision = null,
-        \Rebelo\Decimal\RoundMode $roundMode = null): static
+        ADecimal|float|int $number,
+        ?int               $precision = null,
+        ?RoundMode         $roundMode = null,
+        ?bool              $highCalcPrecision = null
+    ): static
     {
         $valueOf = $this->numberToFloat($number);
         if ($valueOf === 0.0) {
             throw new DecimalException("Can not divide by zero in " . get_called_class());
         }
-        $oper = $this->data / $valueOf;
-        return $this->afterOperFactory($oper, $precision, $roundMode);
+        $result = $this->data / $valueOf;
+        return $this->afterOperationFactory($result, $precision, $roundMode, $highCalcPrecision);
     }
 
     /**
-     * Return a new ADecimal whose the value is the reminder of this demcial divided
+     * Return a new ADecimal who's the value is the reminder of this decimal divided
      * by $number.
-     * If $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
+     * If $precision and/or $roundMode are not supplied is used $this precision or/and
+     * $this roundMode
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @param int|null $precision the decimal part of the number to be rounded
-     * @param \Rebelo\Decimal\RoundMode $roundMode The round mode to be used the round mode
+     * @param \Rebelo\Decimal\RoundMode|null $roundMode The round mode to be used the round mode
+     * @param bool|null $highCalcPrecision If true the round meth will use all decimals
      * @return static The new instance result of operation
      * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function modulus(
-        \Rebelo\Decimal\Base\ADecimal|float|int $number, 
-        ?int $precision = null,
-        \Rebelo\Decimal\RoundMode $roundMode = null): static
+        ADecimal|float|int $number,
+        ?int               $precision = null,
+        ?RoundMode         $roundMode = null,
+        ?bool              $highCalcPrecision = null
+    ): static
     {
         $valueOf = $this->numberToFloat($number);
         if ($valueOf === 0.0) {
             throw new DecimalException("Can not modulus of division by zero in " . \get_class($this));
         }
-        $oper = $this->data % $valueOf;
-        return $this->afterOperFactory($oper, $precision, $roundMode);
+        $result = $this->data % $valueOf;
+        return $this->afterOperationFactory($result, $precision, $roundMode, $highCalcPrecision);
     }
 
     /**
@@ -293,7 +331,7 @@ abstract class ADecimal extends AType implements IConstruct
      * @return void
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function plusThis(\Rebelo\Decimal\Base\ADecimal|float|int $number): void
+    public function plusThis(ADecimal|float|int $number): void
     {
         $this->data += $this->numberToFloat($number);
         $this->round();
@@ -306,7 +344,7 @@ abstract class ADecimal extends AType implements IConstruct
      * @return void
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function subtractThis(\Rebelo\Decimal\Base\ADecimal|float|int $number): void
+    public function subtractThis(ADecimal|float|int $number): void
     {
         $this->data -= $this->numberToFloat($number);
         $this->round();
@@ -319,7 +357,7 @@ abstract class ADecimal extends AType implements IConstruct
      * @return void
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function multiplyThis(\Rebelo\Decimal\Base\ADecimal|float|int $number): void
+    public function multiplyThis(ADecimal|float|int $number): void
     {
         $this->data *= $this->numberToFloat($number);
         $this->round();
@@ -332,7 +370,7 @@ abstract class ADecimal extends AType implements IConstruct
      * @return void
      * @throws \Rebelo\Decimal\DecimalException
      */
-    public function divideThis(\Rebelo\Decimal\Base\ADecimal|float|int $number): void
+    public function divideThis(ADecimal|float|int $number): void
     {
         $valueOf = $this->numberToFloat($number);
         if ($valueOf === 0.0) {
@@ -344,13 +382,15 @@ abstract class ADecimal extends AType implements IConstruct
 
     /**
      *
-     * Return a new Decimal whose the value is the absolute value of this Decimal
+     * Return a new Decimal who's the value is the absolute value of this Decimal
      *
      * @return \Rebelo\Decimal\Decimal
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
-    public function abs(): \Rebelo\Decimal\Decimal
+    public function abs(): Decimal
     {
-        return new \Rebelo\Decimal\Decimal(
+        return new Decimal(
             \abs($this->data), $this->precision, new RoundMode($this->roundMode)
         );
     }
@@ -363,53 +403,52 @@ abstract class ADecimal extends AType implements IConstruct
      */
     public function toString(): string
     {
-        return (string) $this->data;
+        return (string)$this->data;
     }
 
     /**
-     * Roun this decimal
+     * Round this decimal
+     * @return static
+     * @throws \Rebelo\Decimal\DecimalException
      */
-    public function round(): void
+    public function round(): static
     {
         $this->checkSign();
-        if ($this->roundMode === RoundMode::UNNECESSARY)
-        {
-            return;
+        if ($this->roundMode === RoundMode::UNNECESSARY) {
+            return $this;
         }
 
-        if ($this->roundMode === RoundMode::TRUNCATE)
-        {
+        if ($this->roundMode === RoundMode::TRUNCATE) {
             $fstr = "$this->data";
-            if (\preg_match("/E/", $fstr) === 1)
-            {
+            if (\str_contains($fstr, "E")) {
                 $fstr = \number_format(
-                    $this->data, 
-                    static::getMaxPrecision(), 
+                    $this->data,
+                    static::getMaxPrecision(),
                     ".", ""
                 );
             }
-            $this->data = (float) \bcadd("0", $fstr, $this->precision);
-            return;
+            $this->data = (float)\bcadd("0", $fstr, $this->precision);
+            return $this;
         }
 
-        for ($x = static::$maxPrecision + 2; $x >= $this->precision; $x--) {
-            $this->data = \round($this->data, $x, $this->roundMode);
+        if ($this->highCalcPrecision) {
+            for ($x = static::$maxPrecision + 2; $x >= $this->precision; $x--) {
+                $this->data = \round($this->data, $x, $this->roundMode);
+            }
+        } else {
+            $this->data = \round($this->data, $this->precision, $this->roundMode);
         }
 
-        return;
+        return $this;
     }
 
     /**
      *
      * @return string
      */
-    public function __toString(): string
+    #[Pure] public function __toString(): string
     {
-        if ($this->data === null)
-        {
-            throw new \Rebelo\Decimal\DecimalException("Null value in " . get_called_class());
-        }
-        return (string) $this->toString();
+        return $this->toString();
     }
 
     /**
@@ -418,7 +457,7 @@ abstract class ADecimal extends AType implements IConstruct
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function equals(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
+    public function equals(ADecimal|float|int $number): bool
     {
         return $this->valueOf() === $this->numberToFloat($number);
     }
@@ -429,7 +468,7 @@ abstract class ADecimal extends AType implements IConstruct
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isEquals(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
+    public function isEquals(ADecimal|float|int $number): bool
     {
         return $this->equals($number);
     }
@@ -445,44 +484,44 @@ abstract class ADecimal extends AType implements IConstruct
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return int
      */
-    public function compare(\Rebelo\Decimal\Base\ADecimal|float|int $number): int
+    public function compare(ADecimal|float|int $number): int
     {
         return $this->valueOf() <=> $this->numberToFloat($number);
     }
 
     /**
      *
-     * Returns true if this Adecimal is less
+     * Returns true if this ADecimal is less
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isLess(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
+    public function isLess(ADecimal|float|int $number): bool
     {
-        return $this->compare($number) === - 1;
+        return $this->compare($number) === -1;
     }
 
     /**
      *
-     * Returns true if this Adecimal is less or equal
+     * Returns true if this ADecimal is less or equal
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isLessOrEqual(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
+    public function isLessOrEqual(ADecimal|float|int $number): bool
     {
         $compare = $this->compare($number);
-        return $compare === - 1 || $compare === 0;
+        return $compare === -1 || $compare === 0;
     }
 
     /**
      *
-     * Returns true if this Adecimal is greater
+     * Returns true if this ADecimal is greater
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isGreaterOrEqual(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
+    public function isGreaterOrEqual(ADecimal|float|int $number): bool
     {
         $compare = $this->compare($number);
         return $compare === 1 || $compare === 0;
@@ -490,22 +529,23 @@ abstract class ADecimal extends AType implements IConstruct
 
     /**
      *
-     * Returns true if this Adecimal is greater
+     * Returns true if this ADecimal is greater
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @return bool
      */
-    public function isGreater(\Rebelo\Decimal\Base\ADecimal|float|int $number): bool
+    public function isGreater(ADecimal|float|int $number): bool
     {
         return $this->compare($number) === 1;
     }
 
     /**
-     * Get the RoudMode
+     * Get the RoundMode
      *
      * @return RoundMode
+     * @throws \Rebelo\Enum\EnumException
      */
-    public function getRounMode(): RoundMode
+    public function getRoundMode(): RoundMode
     {
         return new RoundMode($this->roundMode);
     }
@@ -522,19 +562,19 @@ abstract class ADecimal extends AType implements IConstruct
     }
 
     /**
-     * Rteurn false if the number doesn't have decomal
+     * Return false if the number doesn't have decimal
      * part or is equal to zero
      *
      * @return bool
      */
     public function hasDecimalPart(): bool
     {
-        return ($this->data % 1) !== 0.0;
+        return (float)($this->data % 1) !== 0.0;
     }
 
     /**
      *
-     * A int of this decimal value rounded to the next lowest int
+     * An int of this decimal value rounded to the next lowest int
      *
      * @return int
      */
@@ -545,7 +585,7 @@ abstract class ADecimal extends AType implements IConstruct
 
     /**
      *
-     * A int of this decimal value rounded up to the next highest int
+     * An int of this decimal value rounded up to the next highest int
      *
      * @return int
      */
@@ -556,57 +596,67 @@ abstract class ADecimal extends AType implements IConstruct
 
     /**
      * Set a new RoundMode to the Decimal calculation
-     * Only have efect at next operations
+     * Only have effect at next operations
      *
      * @param RoundMode $roundMode
-     * @return void
+     * @return static
      */
-    public function setRoundMode(\Rebelo\Decimal\RoundMode $roundMode): void
+    public function setRoundMode(RoundMode $roundMode): static
     {
         $this->roundMode = $roundMode->get();
+        return $this;
     }
 
     /**
-     * Set the precision of the Decimal
-     * the Decimal will be Rouded to the new precision
+     * Set the precision of the Decimal.
+     * The Decimal will be Rounded to the new precision
      *
      * @param int $precision
-     * @return void
+     * @return static
+     * @throws \Rebelo\Decimal\DecimalException
      */
-    public function setPrecision(int $precision): void
+    public function setPrecision(int $precision): static
     {
         $this->checkPrecision($precision);
         $this->precision = $precision;
         $this->round();
-        return;
+        return $this;
     }
 
     /**
      * Format the Decimal to a string
      * @param string $decimalSep
      * @param int|null $decimals If nul the precision will be used
-     * @param string $thousendsSep
+     * @param string $thousandsSep
      * @return string
      * @throws DecimalException
      */
-    public function format(string $decimalSep = ".", ?int $decimals = null,  string $thousendsSep = "") : string
+    public function format(string $decimalSep = ".", ?int $decimals = null, string $thousandsSep = ""): string
     {
-        if($decimals < 0){
+        if ($decimals < 0) {
             throw new DecimalException("Decimals can not be negative");
         }
-        
+
         $marks = [".", ","];
-        
-        if(\in_array($decimalSep, $marks) === false || \in_array($thousendsSep, ["", ...$marks]) === false){
-            throw new DecimalException("Decimal and thousends separator must be '.' or ','");
+
+        if (\in_array($decimalSep, $marks) === false || \in_array($thousandsSep, ["", ...$marks]) === false) {
+            throw new DecimalException("Decimal and thousands separator must be '.' or ','");
         }
-         
+
         return \number_format(
-            $this->data, 
-            $decimals ?? $this->precision, 
-            $decimalSep, 
-            $thousendsSep
+            $this->data,
+            $decimals ?? $this->precision,
+            $decimalSep,
+            $thousandsSep
         );
     }
-        
+
+    /**
+     * @return bool
+     */
+    public function isHighCalcPrecision(): bool
+    {
+        return $this->highCalcPrecision;
+    }
+
 }

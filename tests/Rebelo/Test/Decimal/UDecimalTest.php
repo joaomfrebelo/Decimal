@@ -10,11 +10,7 @@ declare(strict_types=1);
 namespace Rebelo\Test\Decimal;
 
 use PHPUnit\Framework\TestCase;
-use Rebelo\Decimal\{
-    RoundMode,
-    UDecimal,
-    Decimal
-};
+use Rebelo\Decimal\{Base\ADecimal, DecimalException, RoundMode, UDecimal, Decimal};
 
 /**
  * Class UDecimalTest
@@ -25,24 +21,22 @@ class UDecimalTest
     extends TestCase
 {
 
-    static \Rebelo\Decimal\RoundMode $up;
-    static \Rebelo\Decimal\RoundMode $down;
-    static \Rebelo\Decimal\RoundMode $even;
-    static \Rebelo\Decimal\RoundMode $odd;
-    static \Rebelo\Decimal\RoundMode $truncate;
-    static \Rebelo\Decimal\RoundMode $unnecessary;
+    static RoundMode $up;
+    static RoundMode $down;
+    static RoundMode $even;
+    static RoundMode $odd;
+    static RoundMode $truncate;
+    static RoundMode $unnecessary;
 
     /**
      *
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
      */
     public function testInstance(): void
     {
-        $expected = \Rebelo\Decimal\UDecimal::class;
-        $actual   = new \Rebelo\Decimal\UDecimal(
-            9, 9,
-            new RoundMode(RoundMode::HALF_UP)
-        );
+        $expected = UDecimal::class;
+        $actual   = new UDecimal(9, 9, new RoundMode(RoundMode::HALF_UP));
         $this->assertInstanceOf($expected, $actual);
     }
 
@@ -52,7 +46,7 @@ class UDecimalTest
      */
     public function testNegative(): void
     {
-        $this->expectException(\Rebelo\Decimal\DecimalException::class);
+        $this->expectException(DecimalException::class);
         new UDecimal(-1, 2);
     }
 
@@ -360,25 +354,31 @@ class UDecimalTest
     }
 
     /**
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $num
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $add
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $num
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $add
      * @param int $prec
      * @param float $exp
      * @param \Rebelo\Decimal\RoundMode $roundMode
      * @param int|null $precOper
      * @param \Rebelo\Decimal\RoundMode|null $roundModeOper
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      * @dataProvider providerTestPlusOper
      * @dataProvider providerTestPlus
      */
-    public function testPlus($num, $add, int $prec, float $exp,
-                             \Rebelo\Decimal\RoundMode $roundMode,
-                             ?int $precOper,
-                             ?\Rebelo\Decimal\RoundMode $roundModeOper): void
+    public function testPlus(
+        float|ADecimal|int $num,
+        float|ADecimal|int $add,
+        int                $prec,
+        float              $exp,
+        RoundMode          $roundMode,
+        ?int               $precOper,
+        ?RoundMode         $roundModeOper): void
     {
-        $dec    = new \Rebelo\Decimal\UDecimal($num, $prec, $roundMode);
+        $dec    = new UDecimal($num, $prec, $roundMode);
         $sum    = $dec->plus(
-            new \Rebelo\Decimal\Decimal($add, $prec),
+            new Decimal($add, $prec),
             $precOper,
             $roundModeOper
         );
@@ -453,8 +453,8 @@ class UDecimalTest
     }
 
     /**
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $num
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $add
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $num
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $add
      * @param int $prec
      * @param float $exp
      * @param \Rebelo\Decimal\RoundMode $roundMode
@@ -463,15 +463,21 @@ class UDecimalTest
      * @return void
      * @dataProvider providerTestSubtract
      * @dataProvider providerTestSubtractOper
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
-    public function testSubtract($num, $add, int $prec, float $exp,
-                                 \Rebelo\Decimal\RoundMode $roundMode,
-                                 ?int $precOper,
-                                 ?\Rebelo\Decimal\RoundMode $roundModeOper): void
+    public function testSubtract(
+        float|ADecimal|int $num,
+        float|ADecimal|int $add,
+        int                $prec,
+        float              $exp,
+        RoundMode          $roundMode,
+        ?int               $precOper,
+        ?RoundMode         $roundModeOper): void
     {
-        $dec    = new \Rebelo\Decimal\UDecimal($num, $prec, $roundMode);
+        $dec    = new UDecimal($num, $prec, $roundMode);
         $sum    = $dec->subtract(
-            new \Rebelo\Decimal\UDecimal($add, $prec),
+            new UDecimal($add, $prec),
             $precOper,
             $roundModeOper
         );
@@ -482,10 +488,12 @@ class UDecimalTest
     /**
      *
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function testSignedSubtract(): void
     {
-        $dec = new \Rebelo\Decimal\UDecimal(9.99, 2);
+        $dec = new UDecimal(9.99, 2);
         $dec->signedSubtract(10.00);
         $sub = $dec->signedSubtract(10.00);
         $this->assertInstanceOf(Decimal::class, $sub);
@@ -542,8 +550,8 @@ class UDecimalTest
     }
 
     /**
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $num
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $add
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $num
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $add
      * @param int $prec
      * @param float $exp
      * @param \Rebelo\Decimal\RoundMode $roundMode
@@ -551,15 +559,21 @@ class UDecimalTest
      * @param \Rebelo\Decimal\RoundMode|null $roundModeOper
      * @return void
      * @dataProvider providerTestMultiply
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
-    public function testMultiply($num, $add, int $prec, float $exp,
-                                 \Rebelo\Decimal\RoundMode $roundMode,
-                                 ?int $precOper,
-                                 ?\Rebelo\Decimal\RoundMode $roundModeOper): void
+    public function testMultiply(
+        float|ADecimal|int $num,
+        float|ADecimal|int $add,
+        int                $prec,
+        float              $exp,
+        RoundMode          $roundMode,
+        ?int               $precOper,
+        ?RoundMode         $roundModeOper): void
     {
-        $dec    = new \Rebelo\Decimal\UDecimal($num, $prec, $roundMode);
+        $dec    = new UDecimal($num, $prec, $roundMode);
         $sum    = $dec->multiply(
-            new \Rebelo\Decimal\UDecimal($add, $prec),
+            new UDecimal($add, $prec),
             $precOper,
             $roundModeOper
         );
@@ -601,8 +615,8 @@ class UDecimalTest
     }
 
     /**
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $num
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $add
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $num
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $add
      * @param int $prec
      * @param float $exp
      * @param \Rebelo\Decimal\RoundMode $roundMode
@@ -610,15 +624,21 @@ class UDecimalTest
      * @param \Rebelo\Decimal\RoundMode|null $roundModeOper
      * @return void
      * @dataProvider providerTestDivide
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
-    public function testDivide($num, $add, int $prec, float $exp,
-                               \Rebelo\Decimal\RoundMode $roundMode,
-                               ?int $precOper,
-                               ?\Rebelo\Decimal\RoundMode $roundModeOper): void
+    public function testDivide(
+        float|ADecimal|int $num,
+        float|ADecimal|int $add,
+        int                $prec,
+        float              $exp,
+        RoundMode          $roundMode,
+        ?int               $precOper,
+        ?RoundMode         $roundModeOper): void
     {
-        $dec    = new \Rebelo\Decimal\UDecimal($num, $prec, $roundMode);
+        $dec    = new UDecimal($num, $prec, $roundMode);
         $sum    = $dec->divide(
-            new \Rebelo\Decimal\UDecimal($add, $prec),
+            new UDecimal($add, $prec),
             $precOper,
             $roundModeOper
         );
@@ -629,16 +649,19 @@ class UDecimalTest
     /**
      *
      * @return void
+     * @throws \Rebelo\Enum\EnumException
      */
     public function testDivideByZero(): void
     {
-        $this->expectException(\Rebelo\Decimal\DecimalException::class);
+        $this->expectException(DecimalException::class);
         (new UDecimal(2, 1))->divide(new UDecimal(0, 2));
     }
 
     /**
      *
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function testModulos(): void
     {
@@ -652,7 +675,7 @@ class UDecimalTest
      */
     public function testNegativePrecison(): void
     {
-        $this->expectException(\Rebelo\Decimal\DecimalException::class);
+        $this->expectException(DecimalException::class);
         new UDecimal(2, -1);
     }
 
@@ -660,15 +683,15 @@ class UDecimalTest
      *
      * @return void
      */
-    public function testNegativeHigger(): void
+    public function testNegativeHigher(): void
     {
-        $this->expectException(\Rebelo\Decimal\DecimalException::class);
-        new UDecimal(2, \Rebelo\Decimal\Base\ADecimal::getMaxPrecision() + 1);
+        $this->expectException(DecimalException::class);
+        new UDecimal(2, ADecimal::getMaxPrecision() + 1);
     }
 
     /**
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $num
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $add
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $num
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $add
      * @param int $prec
      * @param float $exp
      * @param \Rebelo\Decimal\RoundMode $roundMode
@@ -676,21 +699,26 @@ class UDecimalTest
      * @param \Rebelo\Decimal\RoundMode|null $roundModeOper
      * @return void
      * @dataProvider providerTestPlus
+     * @throws \Rebelo\Decimal\DecimalException
      */
-    public function testPlusThis($num, $add, int $prec, float $exp,
-                                 \Rebelo\Decimal\RoundMode $roundMode,
-                                 ?int $precOper,
-                                 ?\Rebelo\Decimal\RoundMode $roundModeOper): void
+    public function testPlusThis(
+        float|ADecimal|int $num,
+        float|ADecimal|int $add,
+        int                $prec,
+        float              $exp,
+        RoundMode          $roundMode,
+        ?int               $precOper,
+        ?RoundMode         $roundModeOper): void
     {
-        $dec    = new \Rebelo\Decimal\UDecimal($num, $prec, $roundMode);
-        $dec->plusThis(new \Rebelo\Decimal\Decimal($add, $prec));
+        $dec    = new UDecimal($num, $prec, $roundMode);
+        $dec->plusThis(new Decimal($add, $prec));
         $actual = $dec->valueOf();
         $this->assertEquals($exp, $actual);
     }
 
     /**
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $num
-     * @param int|float|\Rebelo\Decimal\Base\ADecimal $add
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $num
+     * @param float|\Rebelo\Decimal\Base\ADecimal|int $add
      * @param int $prec
      * @param float $exp
      * @param \Rebelo\Decimal\RoundMode $roundMode
@@ -698,14 +726,19 @@ class UDecimalTest
      * @param \Rebelo\Decimal\RoundMode|null $roundModeOper
      * @return void
      * @dataProvider providerTestSubtract
+     * @throws \Rebelo\Decimal\DecimalException
      */
-    public function testSubtrstactThis($num, $add, int $prec, float $exp,
-                                       \Rebelo\Decimal\RoundMode $roundMode,
-                                       ?int $precOper,
-                                       ?\Rebelo\Decimal\RoundMode $roundModeOper): void
+    public function testSubtractThis(
+        float|ADecimal|int $num,
+        float|ADecimal|int $add,
+        int                $prec,
+        float              $exp,
+        RoundMode          $roundMode,
+        ?int               $precOper,
+        ?RoundMode         $roundModeOper): void
     {
-        $dec    = new \Rebelo\Decimal\UDecimal($num, $prec, $roundMode);
-        $dec->subtractThis(new \Rebelo\Decimal\UDecimal($add, $prec));
+        $dec    = new UDecimal($num, $prec, $roundMode);
+        $dec->subtractThis(new UDecimal($add, $prec));
         $actual = $dec->valueOf();
         $this->assertEquals($exp, $actual);
     }
@@ -713,6 +746,7 @@ class UDecimalTest
     /**
      *
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
      */
     public function testMultiplyThis(): void
     {
@@ -727,13 +761,14 @@ class UDecimalTest
      */
     public function testDivideThisByZero(): void
     {
-        $this->expectException(\Rebelo\Decimal\DecimalException::class);
+        $this->expectException(DecimalException::class);
         (new UDecimal(4.5, 2))->divideThis(new UDecimal(0, 2));
     }
 
     /**
      *
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
      */
     public function testDivideThis(): void
     {
@@ -757,12 +792,13 @@ class UDecimalTest
      * @param int $expected
      * @return void
      * @dataProvider floorProvider
+     * @throws \Rebelo\Decimal\DecimalException
      */
     public function testFloor(float $number, int $expected): void
     {
         $actual = (new UDecimal(
             $number,
-            \Rebelo\Decimal\Base\ADecimal::getMaxPrecision()
+            ADecimal::getMaxPrecision()
         ))->flor();
         $this->assertEquals($expected, $actual);
     }
@@ -782,46 +818,47 @@ class UDecimalTest
      * @param int $expected
      * @return void
      * @dataProvider ceilProvider
+     * @throws \Rebelo\Decimal\DecimalException
      */
     public function testCeil(float $number, int $expected): void
     {
         $actual = (new UDecimal(
             $number,
-            \Rebelo\Decimal\Base\ADecimal::getMaxPrecision()
+            ADecimal::getMaxPrecision()
         ))->ceil();
         $this->assertEquals($expected, $actual);
     }
 
-
-
     /**
      *
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function testePolymorphism(): void
     {
         $dec = new UDecimal(1, 2);
-        $this->assertSame((float) 9, $dec->plus(8)->valueOf());
+        $this->assertSame(9.0, $dec->plus(8)->valueOf());
         $this->assertSame(1.5, $dec->plus(0.5)->valueOf());
-        $this->assertSame((float) 5, $dec->plus(new Decimal(4, 0))->valueOf());
+        $this->assertSame(5.0, $dec->plus(new Decimal(4, 0))->valueOf());
 
-        $this->assertSame((float) 0, $dec->subtract(1)->valueOf());
+        $this->assertSame(0.0, $dec->subtract(1)->valueOf());
         $this->assertSame(0.5, $dec->subtract(0.5)->valueOf());
         $this->assertSame(0.5, $dec->subtract(new Decimal(0.5, 2))->valueOf());
 
-        $this->assertSame((float) 2, $dec->multiply(2)->valueOf());
+        $this->assertSame(2.0, $dec->multiply(2)->valueOf());
         $this->assertSame(0.5, $dec->multiply(0.5)->valueOf());
         $this->assertSame(
-            (float) 4, $dec->multiply(new Decimal(4, 0))->valueOf()
+            4.0, $dec->multiply(new Decimal(4, 0))->valueOf()
         );
 
         $this->assertSame(0.5, $dec->divide(2)->valueOf());
-        $this->assertSame((float) 2, $dec->divide(0.5)->valueOf());
+        $this->assertSame(2.0, $dec->divide(0.5)->valueOf());
         $this->assertSame(0.5, $dec->divide(new Decimal(2, 0))->valueOf());
 
         $decA = clone $dec;
         $decA->plusThis(8);
-        $this->assertSame((float) 9, $decA->valueOf());
+        $this->assertSame(9.0, $decA->valueOf());
 
         $decB = clone $dec;
         $decB->plusThis(0.5);
@@ -829,11 +866,11 @@ class UDecimalTest
 
         $decC = clone $dec;
         $decC->plusThis(new Decimal(4, 0));
-        $this->assertSame((float) 5, $decC->valueOf());
+        $this->assertSame(5.0, $decC->valueOf());
 
         $decD = clone $dec;
         $decD->subtractThis(1);
-        $this->assertSame((float) 0, $decD->valueOf());
+        $this->assertSame(0.0, $decD->valueOf());
 
         $decE = clone $dec;
         $decE->subtractThis(0.5);
@@ -841,13 +878,11 @@ class UDecimalTest
 
         $decF = clone $dec;
         $decF->subtractThis(new Decimal(0.5, 2));
-        $this->assertSame(
-            (float) 0.5, $decF->valueOf()
-        );
+        $this->assertSame(0.5, $decF->valueOf());
 
         $decG = clone $dec;
         $decG->multiplyThis(2);
-        $this->assertSame((float) 2, $decG->valueOf());
+        $this->assertSame(2.0, $decG->valueOf());
 
         $decH = clone $dec;
         $decH->multiplyThis(0.5);
@@ -855,7 +890,7 @@ class UDecimalTest
 
         $decI = clone $dec;
         $decI->multiplyThis(new Decimal(4, 0));
-        $this->assertSame((float) 4, $decI->valueOf());
+        $this->assertSame(4.0, $decI->valueOf());
 
         $decJ = clone $dec;
         $decJ->divideThis(2);
@@ -863,15 +898,15 @@ class UDecimalTest
 
         $decK = clone $dec;
         $decK->divideThis(0.5);
-        $this->assertSame((float) 2, $decK->valueOf());
+        $this->assertSame(2.0, $decK->valueOf());
 
         $decL = clone $dec;
         $decL->divideThis(new Decimal(2, 0));
-        $this->assertSame((float) 0.5, $decL->valueOf());
+        $this->assertSame(0.5, $decL->valueOf());
 
-        $this->assertSame((float) 0, $dec->modulus(1)->valueOf());
-        $this->assertSame((float) 0, $dec->modulus(1)->valueOf());
-        $this->assertSame((float) 0, $dec->modulus(new Decimal(1, 0))->valueOf());
+        $this->assertSame(0.0, $dec->modulus(1)->valueOf());
+        $this->assertSame(0.0, $dec->modulus(1)->valueOf());
+        $this->assertSame(0.0, $dec->modulus(new Decimal(1, 0))->valueOf());
 
         $this->assertTrue($dec->equals(1));
         $this->assertTrue($dec->equals(1.0));
@@ -889,43 +924,63 @@ class UDecimalTest
         $this->assertTrue($dec->isGreater(0.5));
         $this->assertTrue($dec->isGreater($dec->subtract(0.5)));
     }
-    
+
     /**
      *
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
      */
     public function testIsGreaterOrEqual() :void
     {
         $num = 9;
         $dec = new UDecimal($num, 2);
-        
+
         $this->assertTrue($dec->isGreaterOrEqual($num));
         $this->assertTrue($dec->isGreaterOrEqual($num - 0.01));
         $this->assertTrue($dec->isGreaterOrEqual($num - 0.001));
         $this->assertTrue($dec->isGreaterOrEqual($num - 1));
-        
+
         $this->assertFalse($dec->isGreaterOrEqual($num + 0.001));
         $this->assertFalse($dec->isGreaterOrEqual($num + 0.01));
         $this->assertFalse($dec->isGreaterOrEqual($num + 1.0));
     }
-    
+
     /**
      *
      * @return void
+     * @throws \Rebelo\Decimal\DecimalException
      */
-    public function testIsLessOrEqual() :void 
+    public function testIsLessOrEqual() :void
     {
         $num = 9;
         $dec = new UDecimal($num, 2);
-        
+
         $this->assertTrue($dec->isLessOrEqual($num));
-        
+
         $this->assertFalse($dec->isLessOrEqual($num - 0.01));
         $this->assertFalse($dec->isLessOrEqual($num - 0.001));
         $this->assertFalse($dec->isLessOrEqual($num - 1));
-        
+
         $this->assertTrue($dec->isLessOrEqual($num + 0.001));
         $this->assertTrue($dec->isLessOrEqual($num + 0.01));
         $this->assertTrue($dec->isLessOrEqual($num + 1.0));
     }
+
+    /**
+     * @return void
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
+     */
+    public function testToDecimal(): void
+    {
+        $uDecimal = new UDecimal(1.0, 2);
+        $decimal = $uDecimal->toDecimal();
+
+        $this->assertInstanceOf(Decimal::class, $decimal);
+        $this->assertSame($uDecimal->getRoundMode()->get(), $decimal->getRoundMode()->get());
+        $this->assertSame($uDecimal->getPrecision(), $decimal->getPrecision());
+        $this->assertSame($uDecimal->valueOf(), $decimal->valueOf());
+        $this->assertSame($uDecimal->isHighCalcPrecision(), $decimal->isHighCalcPrecision());
+    }
+
 }

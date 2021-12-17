@@ -8,14 +8,15 @@
 
 namespace Rebelo\Test\Decimal;
 
+use PHPUnit\Framework\TestCase;
 use Rebelo\Decimal\RoundMode;
 
 class RoundModeTest
-    extends \PHPUnit\Framework\TestCase
+    extends TestCase
 {
 
-    protected \Rebelo\Decimal\RoundMode $_objectValue;
-    protected \Rebelo\Decimal\RoundMode $_objectName;
+    protected RoundMode $_objectValue;
+    protected RoundMode $_objectName;
 
     protected function setUp(): void
     {

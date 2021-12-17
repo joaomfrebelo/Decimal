@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Rebelo\Decimal;
 
+use Rebelo\Enum\AEnum;
+
 /**
  * Round mode to be used to the \Rebelo\Decimal\Base\ADecimal
  *
@@ -15,7 +17,7 @@ namespace Rebelo\Decimal;
  *
  */
 class RoundMode
-    extends \Rebelo\Enum\AEnum
+    extends AEnum
 {
 
     /**

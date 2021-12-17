@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Rebelo\Decimal;
 
+use JetBrains\PhpStorm\Pure;
+
 /**
  * Exception class to be used in Decimal
  */
@@ -19,10 +21,10 @@ class DecimalException
      * Decimal Exception
      * @param string $message
      * @param int $code
-     * @param \Throwable $previous
+     * @param \Throwable|null $previous
      */
-    public function __construct($message = "", $code = 0,
-                                \Throwable $previous = NULL)
+    #[Pure] public function __construct(string     $message = "", int $code = 0,
+                                        \Throwable $previous = NULL)
     {
         parent::__construct(
             $message,

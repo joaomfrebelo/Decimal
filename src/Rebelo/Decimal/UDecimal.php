@@ -8,17 +8,17 @@ declare(strict_types=1);
 
 namespace Rebelo\Decimal;
 
-use Rebelo\Decimal\RoundMode;
+use Rebelo\Decimal\Base\ADecimal;
 
 /**
  * UDecimal class
  * Unsigned decimal number
- * @method \Rebelo\Decimal\UDecimal divide(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
- * @method \Rebelo\Decimal\UDecimal modulus(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
- * @method \Rebelo\Decimal\UDecimal multiply(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
- * @method \Rebelo\Decimal\UDecimal plus(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
- * @method \Rebelo\Decimal\UDecimal subtract(\Rebelo\Decimal\Base\ADecimal|float|int $number, ?int $precision = null, \Rebelo\Decimal\RoundMode $roundMode = null)
- * 
+ * @method UDecimal divide(ADecimal|float|int $number, ?int $precision = null, RoundMode $roundMode = null, bool $highCalcPrecision = null)
+ * @method UDecimal modulus(ADecimal|float|int $number, ?int $precision = null, RoundMode $roundMode = null, bool $highCalcPrecision = null)
+ * @method UDecimal multiply(ADecimal|float|int $number, ?int $precision = null, RoundMode $roundMode = null, bool $highCalcPrecision = null)
+ * @method UDecimal plus(ADecimal|float|int $number, ?int $precision = null, RoundMode $roundMode = null, bool $highCalcPrecision = null)
+ * @method UDecimal subtract(ADecimal|float|int $number, ?int $precision = null, RoundMode $roundMode = null, bool $highCalcPrecision = null)
+ *
  * @author João Rebelo
  */
 class UDecimal extends Base\ADecimal
@@ -31,48 +31,61 @@ class UDecimal extends Base\ADecimal
      * @see \Rebelo\Decimal\Base\ADecimal::__construct()
      */
     public function __construct(
-        float|int|string|\Rebelo\Decimal\Decimal $number, 
-        int $precision,
-        \Rebelo\Decimal\RoundMode $roundMode = null)
+        float|int|string|Decimal $number,
+        int                      $precision,
+        RoundMode                $roundMode = null,
+        bool                     $highCalcPrecision = false)
     {
         $this->isUnsigned = true;
-        parent::__construct($number, $precision, $roundMode);
+        parent::__construct($number, $precision, $roundMode, $highCalcPrecision);
     }
 
     /**
-     * Return a new Decimal (signed decimal) whose the value is this demcial minus $number
-     * if $pecision and/or $roundMode are note suplied is used $this precison or/and
-     * $this rooundMode
+     * Return a new Decimal (signed decimal) who's the value is this decimal minus $number
+     * if $precision and/or $roundMode are not supplied is used $this precision or/and
+     * $this roundMode
      *
      * @param \Rebelo\Decimal\Base\ADecimal|float|int $number
      * @param int|null $precision
-     * @param \Rebelo\Decimal\RoundMode $roundMode
+     * @param \Rebelo\Decimal\RoundMode|null $roundMode
+     * @param bool|null $highCalcPrecision If true the round meth will use all decimals
      * @return \Rebelo\Decimal\Decimal
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
     public function signedSubtract(
-        \Rebelo\Decimal\Base\ADecimal|float|int$number, 
-        ?int $precision = null,
-        RoundMode $roundMode = null): Decimal
+        ADecimal|float|int $number,
+        ?int               $precision = null,
+        ?RoundMode         $roundMode = null,
+        ?bool              $highCalcPrecision = null
+    ): Decimal
     {
         $dec = new Decimal(
             $this->valueOf(), $this->precision, new RoundMode($this->roundMode)
         );
 
-        return $dec->subtract($number, $precision, $roundMode);
+        return $dec->subtract($number, $precision, $roundMode, $highCalcPrecision ?? $this->highCalcPrecision);
     }
 
     /**
-     * Unserialize the UDecimal object
-     * @param string $serialized
-     * @return \Rebelo\Decimal\UDecimal
+     * @param int|null $precision
+     * @param \Rebelo\Decimal\RoundMode|null $roundMode
+     * @param bool|null $highCalcPrecision
+     * @return \Rebelo\Decimal\Decimal
+     * @throws \Rebelo\Decimal\DecimalException
+     * @throws \Rebelo\Enum\EnumException
      */
-    public static function unserialize(string $serialized): UDecimal
+    public function toDecimal(
+        ?int       $precision = null,
+        ?RoundMode $roundMode = null,
+        ?bool      $highCalcPrecision = false
+    ): Decimal
     {
-        return \unserialize(
-            $serialized,
-            [
-                "allowed_classes" => [\Rebelo\Decimal\UDecimal::class]
-            ]
+        return new Decimal(
+            $this->data,
+            $precision ?? $this->precision,
+            $roundMode ?? new RoundMode($this->roundMode),
+            $highCalcPrecision ?? $this->highCalcPrecision
         );
     }
 

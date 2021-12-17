@@ -16,9 +16,9 @@ interface IType
 {
 
     /**
-     * @return Mixed return the php native variavel type
+     * @return float return the php native variavel type
      */
-    public function valueOf();
+    public function valueOf(): float;
 
     /**
      * A string representation of the object
@@ -32,19 +32,4 @@ interface IType
      */
     public function toString(): string;
 
-    /**
-     *
-     * Return a string representing the object
-     *
-     * @return string Description
-     */
-    public function serialize(): string;
-
-    /**
-     *
-     * unserialize a obj string previous serialized
-     * @param string $serialized the string serialized
-     * @return Mixed Returns this object
-     */
-    public static function unserialize(string $serialized);
 }

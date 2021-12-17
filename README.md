@@ -1,10 +1,15 @@
 # Decimal
 
 Decimal is a library do work with decimals in PHP.
-This library have classes to signed and unsigned decimals.
+This library has classes to signed and unsigned decimals.
+
+Start on version 4.0 the round method can be high precision or
+standard mode, by default is set to standard mode.
+
+The standard mode round precision the decimal using only the first digit after the
+last digit of precision, the high precision use all decimals digits.
 
 ## Example
-```
 ``` php
 use Rebelo\Decimal\RoundMode;
 use Rebelo\Decimal\Decimal;
@@ -12,6 +17,18 @@ use Rebelo\Decimal\Decimal;
 $decimal = new Decimal(9.9, 4, new RoundMode(RoundMode::HALF_UP));
 $result = $decimal->plus(new Decimal(0.1, 2));
 $float = $result->valueOf();
+
+// Simple initialization
+$decimal = new Decimal(9.9, 4);
+
+// Full initialization set the RoundMode and precion round mode
+$decimal = new Decimal(9.9, 4, new RoundMode(RoundMode::HALF_UP), true);
+
+// Difference between standard mode round precision and high precision
+// Standard mode
+new Decimal(12571.674647, 2, null, false); // will be round to 12571.67
+// high precision mode
+new Decimal($value, 2, null, true); // will be12571.68
 ```
 ## Install
 

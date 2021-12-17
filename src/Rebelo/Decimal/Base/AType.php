@@ -22,7 +22,7 @@ abstract class AType implements IType
      *
      * @var float
      */
-    protected $data = null;
+    protected float $data;
 
     /**
      *
@@ -44,7 +44,7 @@ abstract class AType implements IType
      */
     final public function __invoke(): \Exception
     {
-        throw new \Exception();
+        throw new \BadFunctionCallException();
     }
 
     /**
@@ -62,10 +62,10 @@ abstract class AType implements IType
      * @return float
      * @throws \InvalidArgumentException On invalid argument
      */
-    public function numberToFloat($number): float
+    public function numberToFloat(ADecimal|float|int $number): float
     {
         switch (true) {
-            case $number instanceof \Rebelo\Decimal\Base\ADecimal:
+            case $number instanceof ADecimal:
                 return $number->valueOf();
             case is_float($number):
             case is_double($number):
