@@ -18,7 +18,7 @@
     "license": "MIT",
     "prefer-stable": true,
     "require": {
-        "php": "^8.0",
+        "php": "8.0.* || 8.1.* || 8.2.*",
       "ext-bcmath": "*"
     },
     "require-dev": {
@@ -29,6 +29,5 @@
 	    "jetbrains/phpstorm-attributes": "^1.0"
     },
     "homepage": "https://github.com/joaomfrebelo/Decimal",
-    "version": "4.0.0",
     "type": "library"
 }

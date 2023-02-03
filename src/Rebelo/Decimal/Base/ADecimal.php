@@ -86,19 +86,11 @@ abstract class ADecimal extends AType implements IConstruct
             throw new DecimalException("isUnsigned is not defined");
         }
 
-        switch (true) {
-            case \is_int($number):
-            case \is_double($number):
-            case \is_float($number):
-            case \is_numeric($number):
-                $this->data = (float)$number;
-                break;
-            case $number instanceof ADecimal:
-                $this->data = $number->valueOf();
-                break;
-            default:
-                throw new \InvalidArgumentException("Invalid argument type in " . __METHOD__);
-        }
+        $this->data = match (true) {
+            \is_numeric($number) => (float)$number,
+            $number instanceof ADecimal => $number->valueOf(),
+            default => throw new \InvalidArgumentException("Invalid argument type in " . __METHOD__),
+        };
 
         $this->highCalcPrecision = $highCalcPrecision;
 
@@ -136,7 +128,8 @@ abstract class ADecimal extends AType implements IConstruct
     public static function getMaxPrecision(): int
     {
         if (static::$maxPrecision === null) {
-            static::$maxPrecision = ((int)ini_get("precision")) - 2;
+            $maxIni = ((int)ini_get("precision")) - 2;
+            static::$maxPrecision = min($maxIni, 10);
         }
         return static::$maxPrecision;
     }

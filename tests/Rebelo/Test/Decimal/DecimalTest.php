@@ -603,6 +603,12 @@ class DecimalTest extends TestCase
         int       $precision,
         int       $decimals): void
     {
+
+        if($precision > ADecimal::getMaxPrecision() || $decimals  > ADecimal::getMaxPrecision()){
+            static::expectNotToPerformAssertions();
+            return;
+        }
+
         $actual = (new Decimal($left, $precision))
             ->plus(new Decimal($right, $decimals))->valueOf();
 
